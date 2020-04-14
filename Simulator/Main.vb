@@ -1,6 +1,18 @@
 ﻿Public Class Main
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        If Executor.State <> States.Idle Then
+            MessageBox.Show("Machine is not idle!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
 
+        OpenFileDialog1.ShowDialog()
+        Dim path As String = OpenFileDialog1.FileName
+
+        Dim Code As String = FileIO.FileSystem.ReadAllText(path)
+        Executor.Code = Parser.Parse(Code)
+        'BackgroundWorker1.RunWorkerAsync()
+        Executor.PowerOn()
+        Executor.ExecutionLoop()
     End Sub
 
     Private Sub Quit(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click

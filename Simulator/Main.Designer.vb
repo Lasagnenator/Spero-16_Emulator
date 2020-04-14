@@ -39,6 +39,8 @@ Partial Class Main
         Me.ResetButtom = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -173,6 +175,13 @@ Partial Class Main
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 11
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.Filter = "RISC Binary Files|*.r16.bin"
+        Me.OpenFileDialog1.InitialDirectory = "."
+        Me.OpenFileDialog1.SupportMultiDottedExtensions = True
+        Me.OpenFileDialog1.Title = "Open Code File"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -215,4 +224,6 @@ Partial Class Main
     Friend WithEvents ResetButtom As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
