@@ -45,6 +45,7 @@ Public Class Executor
             While State <> States.Executing 'Save on cpu resources when paused etc
                 Threading.Thread.Sleep(100)
             End While
+
             Word = GetWord()
             OpCode = (Word And CType(&HF000, UInt16)) >> 12
             Field1 = (Word And CType(&HF00, UInt16)) >> 8

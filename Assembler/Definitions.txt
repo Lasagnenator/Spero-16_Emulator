@@ -1,0 +1,28 @@
+.label
+lOaD R1,#1 ;sets register 1 to value 1
+
+JUMP .label ;unconditional jump to label
+
+
+load    Rn,#imm   ;--> 0n00 imm
+load    Rn,addr   ;--> 1n00 addr
+load    Rn,*Rm    ;--> 2nm0
+store   Rn,addr   ;--> 3n00 addr
+store   Rn,*Rm    ;--> 4nm0
+add     Rn,Rm,Rc  ;--> 5nmc
+sub     Rn,Rm,Rc  ;--> 6nmc
+and     Rn,Rm,Rc  ;--> 7nmc
+or      Rn,Rm,Rc  ;--> 8nmc
+shiftr  Rn,Rc     ;--> 9n0c
+readio  Rn,Rm     ;--> Enm0
+writeio Rn,Rm     ;--> Fnm0
+
+jump    addr      ;--> A000 addr
+jumplt  Rn,Rm,addr;--> Anm1 addr
+jumpgt  Rn,Rm,addr;--> Anm2 addr
+jumpeq  Rn,Rm,addr;--> Anm3 addr
+jumpnv            ;--> Anm4
+jumpbl  Rn,Rm,addr;--> Anm5 addr
+jumpab  Rn,Rm,addr;--> Anm6 addr
+jumpne  Rn,Rm,addr;--> Anm7 addr
+jump    *Rn       ;--> Bn00
