@@ -19,7 +19,7 @@ class Line:
 
     bin_instruction = ""
     
-    def __init__(self, string, pc):
+    def __init__(self, string):
         self.string = string
         #self.pc = pc
         self.Parse()
@@ -43,6 +43,7 @@ class Line:
             
             self.noop = False
             self.is_label = True
+            self.string = string
             return
 
         else: #split by space then remove cases with multiple spaces
@@ -63,10 +64,17 @@ class Line:
         if split[0] == "LOAD":
             Rn = hex(int(split[1][0][1], 16))[2:]
             if split[1][1][0] == "#": #immediate
-                imm = hex(int(split[1][1][1:5], 16))[2:]
-                imm = imm.rjust(4, "0")
-                self.bin_instruction = "0{}00 {}".format(Rn, imm)
-                self.has_data = True
+                if split[1][1][1] == ".":
+                    imm = split[1][1][1:]
+                    self.has_data = True
+                    self.has_reference = True
+                    self.addr = imm
+                    self.bin_instruction = "0{}00 {}".format(Rn, imm)
+                else:
+                    imm = hex(int(split[1][1][1:5], 16))[2:]
+                    imm = imm.rjust(4, "0")
+                    self.bin_instruction = "0{}00 {}".format(Rn, imm)
+                    self.has_data = True
                 
             elif split[1][1][0] == "*": #pointer
                 Rm = hex(int(split[1][1][2], 16))[2:]
@@ -157,19 +165,14 @@ class Line:
             self.jumptype = jumptype
             self.noop = False
             
-##            if jumptype == "NV": #handle this one first so that no errors occur
-##                self.bin_instruction = "A004 0000"
-##                self.has_data = False
-##                return
-            
             if split[1][-1][0] == ".": #address is a label, process later
                 self.is_jump = True
                 self.has_data = True
                 self.has_reference = True
 
             elif jumptype == "": #unconditional. Either pointer or absolute
-                if split[1][0][0] == "*": #pointer
-                    Rn = hex(int(split[1][0][2], 16))[2:]
+                if split[1][0][0] == "R": #pointer
+                    Rn = hex(int(split[1][0][1], 16))[2:]
                     self.bin_instruction = "B{}00".format(Rn)
                     self.has_data = False
                     
@@ -231,25 +234,25 @@ class Line:
             raise RuntimeError("Label `{}` not defined!".format(label))
         addr = label_table[label]
         addr = hex(addr)[2:].rjust(4, "0")
+
+        #print(label, addr, self.bin_instruction)
         
         self.bin_instruction = self.bin_instruction.replace(label, addr)
-        #print(bin_instruction)
 
 def make_asm(file_path):
     global label_table
     label_table = dict()
     with open(file_path, "r") as file:
         lines = []
-        for line in file:
-            #print(line)
-            lines.append(Line(line.replace("\n", ""), -1))
-            
-        #remove no-op lines
-        for line in lines:
-            if line.noop:
-                lines.remove(line)
         
-        #update pc of each instruction
+        print("Pass 1: Collecting instructions")
+        for line in file:
+            temp1 = line.replace("\n", "")
+            temp2 = Line(temp1)
+            if not temp2.noop:
+                lines.append(Line(temp1))
+
+        print("Pass 2: Update pc of each instruction")
         counter = 0
         for line in lines:
             line.pc = counter
@@ -259,9 +262,8 @@ def make_asm(file_path):
             counter += 1
             if line.has_data:
                 counter += 1
-        #print(counter)
 
-        #update lines that have references to labels
+        print("Pass 3: Update lines that have references to labels")
         for line in lines:
             if line.has_reference:
                 line.UpdateReference()

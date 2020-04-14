@@ -21,6 +21,7 @@ class MainFrameClass(Frames.MainFrame):
         with open(out_file, "w+") as file:
             file.write(asm)
         self.statusbar.SetStatusText("Completed")
+        print("Success")
 
 
 App = wx.App()

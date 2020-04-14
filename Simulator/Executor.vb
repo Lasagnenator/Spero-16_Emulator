@@ -12,6 +12,7 @@ Public Class Executor
         ReDim Registers(15)
         ReDim Memory(65535)
         ReDim PeripheralBus(65535)
+        Array.Copy(Code, Memory, Code.Length)
         State = States.Idle
     End Sub
 
