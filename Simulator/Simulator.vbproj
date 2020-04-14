@@ -90,6 +90,12 @@
     <Compile Include="Graphics.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Memory.Designer.vb">
+      <DependentUpon>Memory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Memory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Graphics.resx">
       <DependentUpon>Graphics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Memory.resx">
+      <DependentUpon>Memory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
