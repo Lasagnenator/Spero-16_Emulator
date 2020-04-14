@@ -28,7 +28,7 @@
     End Sub
 
     Private Sub RegistersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegistersToolStripMenuItem.Click
-
+        Registers.Show()
     End Sub
 
     Private Sub MemoryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MemoryToolStripMenuItem.Click
