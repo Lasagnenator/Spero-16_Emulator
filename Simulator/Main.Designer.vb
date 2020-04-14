@@ -22,6 +22,7 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -33,14 +34,19 @@ Partial Class Main
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.CurrentStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ClockSpeedStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.OffButton = New System.Windows.Forms.Button()
         Me.PauseButton = New System.Windows.Forms.Button()
         Me.OnButton = New System.Windows.Forms.Button()
-        Me.ResetButtom = New System.Windows.Forms.Button()
+        Me.ResetButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.SelectedFile = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ResumeButton = New System.Windows.Forms.Button()
+        Me.StepButton = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -50,7 +56,7 @@ Partial Class Main
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(340, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -103,10 +109,10 @@ Partial Class Main
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.CurrentStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.CurrentStatus, Me.ToolStripStatusLabel2, Me.ClockSpeedStatus})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 150)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(340, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -122,8 +128,21 @@ Partial Class Main
         Me.CurrentStatus.Size = New System.Drawing.Size(26, 17)
         Me.CurrentStatus.Text = "Idle"
         '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(74, 17)
+        Me.ToolStripStatusLabel2.Text = "Clock speed:"
+        '
+        'ClockSpeedStatus
+        '
+        Me.ClockSpeedStatus.Name = "ClockSpeedStatus"
+        Me.ClockSpeedStatus.Size = New System.Drawing.Size(27, 17)
+        Me.ClockSpeedStatus.Text = "0Hz"
+        '
         'OffButton
         '
+        Me.OffButton.Enabled = False
         Me.OffButton.Location = New System.Drawing.Point(93, 27)
         Me.OffButton.Name = "OffButton"
         Me.OffButton.Size = New System.Drawing.Size(75, 23)
@@ -133,6 +152,7 @@ Partial Class Main
         '
         'PauseButton
         '
+        Me.PauseButton.Enabled = False
         Me.PauseButton.Location = New System.Drawing.Point(174, 27)
         Me.PauseButton.Name = "PauseButton"
         Me.PauseButton.Size = New System.Drawing.Size(75, 23)
@@ -142,6 +162,7 @@ Partial Class Main
         '
         'OnButton
         '
+        Me.OnButton.Enabled = False
         Me.OnButton.Location = New System.Drawing.Point(12, 27)
         Me.OnButton.Name = "OnButton"
         Me.OnButton.Size = New System.Drawing.Size(75, 23)
@@ -149,31 +170,32 @@ Partial Class Main
         Me.OnButton.Text = "Power on"
         Me.OnButton.UseVisualStyleBackColor = True
         '
-        'ResetButtom
+        'ResetButton
         '
-        Me.ResetButtom.Location = New System.Drawing.Point(255, 27)
-        Me.ResetButtom.Name = "ResetButtom"
-        Me.ResetButtom.Size = New System.Drawing.Size(75, 23)
-        Me.ResetButtom.TabIndex = 9
-        Me.ResetButtom.Text = "Reset"
-        Me.ResetButtom.UseVisualStyleBackColor = True
+        Me.ResetButton.Enabled = False
+        Me.ResetButton.Location = New System.Drawing.Point(255, 27)
+        Me.ResetButton.Name = "ResetButton"
+        Me.ResetButton.Size = New System.Drawing.Size(75, 23)
+        Me.ResetButton.TabIndex = 9
+        Me.ResetButton.Text = "Reset"
+        Me.ResetButton.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 121)
+        Me.Label2.Location = New System.Drawing.Point(9, 82)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(106, 13)
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Current selected file: "
         '
-        'TextBox1
+        'SelectedFile
         '
-        Me.TextBox1.Location = New System.Drawing.Point(124, 118)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 11
+        Me.SelectedFile.Location = New System.Drawing.Point(12, 98)
+        Me.SelectedFile.Name = "SelectedFile"
+        Me.SelectedFile.ReadOnly = True
+        Me.SelectedFile.Size = New System.Drawing.Size(316, 20)
+        Me.SelectedFile.TabIndex = 11
         '
         'OpenFileDialog1
         '
@@ -182,14 +204,41 @@ Partial Class Main
         Me.OpenFileDialog1.SupportMultiDottedExtensions = True
         Me.OpenFileDialog1.Title = "Open Code File"
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 500
+        '
+        'ResumeButton
+        '
+        Me.ResumeButton.Enabled = False
+        Me.ResumeButton.Location = New System.Drawing.Point(174, 56)
+        Me.ResumeButton.Name = "ResumeButton"
+        Me.ResumeButton.Size = New System.Drawing.Size(75, 23)
+        Me.ResumeButton.TabIndex = 12
+        Me.ResumeButton.Text = "Resume"
+        Me.ResumeButton.UseVisualStyleBackColor = True
+        '
+        'StepButton
+        '
+        Me.StepButton.Enabled = False
+        Me.StepButton.Location = New System.Drawing.Point(93, 56)
+        Me.StepButton.Name = "StepButton"
+        Me.StepButton.Size = New System.Drawing.Size(75, 23)
+        Me.StepButton.TabIndex = 13
+        Me.StepButton.Text = "Step"
+        Me.StepButton.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.TextBox1)
+        Me.ClientSize = New System.Drawing.Size(340, 172)
+        Me.Controls.Add(Me.StepButton)
+        Me.Controls.Add(Me.ResumeButton)
+        Me.Controls.Add(Me.SelectedFile)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.ResetButtom)
+        Me.Controls.Add(Me.ResetButton)
         Me.Controls.Add(Me.OnButton)
         Me.Controls.Add(Me.PauseButton)
         Me.Controls.Add(Me.OffButton)
@@ -221,9 +270,14 @@ Partial Class Main
     Friend WithEvents OffButton As Button
     Friend WithEvents PauseButton As Button
     Friend WithEvents OnButton As Button
-    Friend WithEvents ResetButtom As Button
+    Friend WithEvents ResetButton As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents SelectedFile As TextBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents ClockSpeedStatus As ToolStripStatusLabel
+    Friend WithEvents ResumeButton As Button
+    Friend WithEvents StepButton As Button
 End Class
