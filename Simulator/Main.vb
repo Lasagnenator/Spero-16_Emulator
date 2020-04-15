@@ -120,4 +120,15 @@
         Executor.Cycles = 0
         ClockSpeedStatus.Text = ClockSpeed.ToString() + "Hz"
     End Sub
+
+    Private Sub Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Executor.State = States.Idle
+        Executor.Code = {0}
+        Executor.Reset()
+        Memory.Value = {0}
+        Memory.ListBox1.Items.Clear()
+        Memory.ListBox2.Items.Clear()
+        Memory.Timer1.Enabled = False
+        Return
+    End Sub
 End Class

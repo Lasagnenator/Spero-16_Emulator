@@ -87,7 +87,7 @@
     add     R2,R5,R0                ; 0047 Next destination
     sub     R3,R5,R0                ; 0048 Count another word copied
     jumpne  R3,R0,.ForwardCopy      ; 0049
-    or      RF,RE,R0                ; 004B Return
+    jump    RE                      ; 004B Return
 ;004C (end)
 
 

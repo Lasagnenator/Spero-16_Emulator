@@ -33,58 +33,61 @@ Partial Class Memory
         'ListBox2
         '
         Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.ItemHeight = 25
         Me.ListBox2.Items.AddRange(New Object() {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"})
-        Me.ListBox2.Location = New System.Drawing.Point(118, 12)
+        Me.ListBox2.Location = New System.Drawing.Point(236, 23)
         Me.ListBox2.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.ScrollAlwaysVisible = True
-        Me.ListBox2.Size = New System.Drawing.Size(118, 407)
+        Me.ListBox2.Size = New System.Drawing.Size(232, 779)
         Me.ListBox2.TabIndex = 3
         '
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 25
         Me.ListBox1.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"})
-        Me.ListBox1.Location = New System.Drawing.Point(0, 12)
+        Me.ListBox1.Location = New System.Drawing.Point(0, 23)
         Me.ListBox1.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(118, 407)
+        Me.ListBox1.Size = New System.Drawing.Size(232, 779)
         Me.ListBox1.TabIndex = 2
         '
         'Timer1
         '
-        Me.Timer1.Interval = 2000
+        Me.Timer1.Interval = 1500
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(27, -1)
+        Me.Label1.Location = New System.Drawing.Point(54, -2)
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(56, 13)
+        Me.Label1.Size = New System.Drawing.Size(114, 25)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Addresses"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(150, -1)
+        Me.Label2.Location = New System.Drawing.Point(300, -2)
         Me.Label2.Margin = New System.Windows.Forms.Padding(0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.Size = New System.Drawing.Size(78, 25)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Values"
         '
         'Memory
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(236, 420)
+        Me.ClientSize = New System.Drawing.Size(472, 808)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ListBox2)
         Me.Controls.Add(Me.ListBox1)
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Name = "Memory"
         Me.Text = "Memory"
         Me.ResumeLayout(False)
