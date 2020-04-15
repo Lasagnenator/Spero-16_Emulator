@@ -1,7 +1,7 @@
 ﻿Public Class Parser
     Public Shared Function Parse(Code As String) As UInt16()
         Dim CodeArr As List(Of String) = New List(Of String)
-        For i = 0 To (Code.Length \ 4) - 1
+        For i = 0 To (Code.Length \ 4) - 1 'Backslash means integer division which we want
             CodeArr.Add(Code.Substring(i * 4, 4))
         Next
 
