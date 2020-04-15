@@ -34,4 +34,14 @@
 
         Timer1.Enabled = True
     End Sub
+
+    Private Sub GotoButton_Click(sender As Object, e As EventArgs) Handles GotoButton.Click
+        ListBox1.SelectedIndex = CInt(AddressBox.Value)
+    End Sub
+
+    Private Sub AddressBox_KeyDown(sender As Object, e As KeyEventArgs) Handles AddressBox.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            GotoButton_Click(Nothing, Nothing)
+        End If
+    End Sub
 End Class

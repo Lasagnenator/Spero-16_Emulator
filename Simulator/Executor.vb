@@ -16,7 +16,6 @@ Public Class Executor
 
     Shared Sub PowerOn()
         Reset()
-        Array.Copy(Code, Memory, Code.Length)
         State = States.Executing
     End Sub
 
