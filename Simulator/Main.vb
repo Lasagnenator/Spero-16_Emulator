@@ -1,7 +1,8 @@
 ﻿Public Class Main
     Private FileOpened As Boolean = False
     Private Code As String = ""
-    Private Prev As Date = Date.Now
+    Private Prev As Stopwatch = New Stopwatch()
+    Private ThreadMade As Boolean = False
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Executor.State <> States.Idle Then
             MessageBox.Show("Machine is not idle!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -57,6 +58,9 @@
         StepButton.Enabled = False
 
         Executor.PowerOn()
+        If ThreadMade Then 'Don't keep making new threads
+            Exit Sub
+        End If
         Dim Work As Threading.Thread
         Work = New Threading.Thread(AddressOf Executor.ExecutionLoop)
         Work.IsBackground = True
@@ -122,13 +126,15 @@
         End If
         CurrentStatus.Text = ExecutorStatus
 
-        Dim Now As Date = Date.Now
-        Dim span As TimeSpan = Now - Prev 'Using this as a more accurate representation of time elapsed
+
+        Dim ms As Long = Prev.ElapsedMilliseconds
+        Prev.Restart()
+        'Using this as a more accurate representation of time elapsed
         'As Timer has a +-14ms range, it is not accurate enough for these high clock speeds
 
-        Dim ClockSpeed As Integer = Executor.Cycles / (span.TotalSeconds)
+        Dim ClockSpeed As Integer = Executor.Cycles / (ms / 1000)
         Executor.Cycles = 0
-        Prev = Now
+
         ClockSpeedStatus.Text = ClockSpeed.ToString() + "Hz"
     End Sub
 
@@ -141,5 +147,9 @@
         Memory.ListBox2.Items.Clear()
         Memory.Timer1.Enabled = False
         Return
+    End Sub
+
+    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Prev.Start()
     End Sub
 End Class

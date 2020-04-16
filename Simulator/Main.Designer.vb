@@ -247,7 +247,7 @@ Partial Class Main
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Main"
         Me.Text = "RISC 16 Simulator"
         Me.MenuStrip1.ResumeLayout(False)
