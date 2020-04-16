@@ -16,6 +16,8 @@ class MainFrameClass(Frames.MainFrame):
             message = str(sys.exc_info()[1])
             wx.MessageDialog(self, message, caption="Error!",
                              style=wx.OK|wx.ICON_ERROR).ShowModal()
+            self.statusbar.SetStatusText("Failure")
+            print("Failure")
             return
         out_file = self.SaveFilePicker.GetPath()
         with open(out_file, "w+") as file:

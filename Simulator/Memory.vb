@@ -10,6 +10,8 @@
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        'Makes a +-32 range around the selected index to update.
+        'Do it this way because there is no way to get the scroll position.
         Dim index = ListBox2.SelectedIndex
         Dim Min = If(index - 32 < 0, 0, index - 32)
         Dim Max = If(index + 32 > 65535, 65535, index + 32)

@@ -57,7 +57,7 @@ Partial Class Memory
         '
         'Timer1
         '
-        Me.Timer1.Interval = 1500
+        Me.Timer1.Interval = 1000
         '
         'Label1
         '

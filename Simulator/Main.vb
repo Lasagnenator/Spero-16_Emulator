@@ -1,6 +1,7 @@
 ﻿Public Class Main
     Private FileOpened As Boolean = False
     Private Code As String = ""
+    Private Prev As Date = Date.Now
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Executor.State <> States.Idle Then
             MessageBox.Show("Machine is not idle!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -20,7 +21,6 @@
         ResumeButton.Enabled = False
         PauseButton.Enabled = False
         StepButton.Enabled = True
-        'BackgroundWorker1.RunWorkerAsync()
     End Sub
 
     Private Sub Quit(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
@@ -104,7 +104,7 @@
         Executor.StepOnce()
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick 'Triggers every 0.5s
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick 'Triggers every 0.5s +-14ms
         Dim ExecutorStatus As String = "Unknown"
         If Executor.State = States.Idle Then
             ExecutorStatus = "Idle"
@@ -116,8 +116,14 @@
             ExecutorStatus = "Stepping"
         End If
         CurrentStatus.Text = ExecutorStatus
-        Dim ClockSpeed As Integer = Executor.Cycles / (Timer1.Interval / 1000)
+
+        Dim Now As Date = Date.Now
+        Dim span As TimeSpan = Now - Prev 'Using this as a more accurate representation of time elapsed
+        'As Timer has a +-14ms range, it is not accurate enough for these high clock speeds
+
+        Dim ClockSpeed As Integer = Executor.Cycles / (span.TotalSeconds)
         Executor.Cycles = 0
+        Prev = Now
         ClockSpeedStatus.Text = ClockSpeed.ToString() + "Hz"
     End Sub
 

@@ -10,6 +10,7 @@ Public Class Executor
         'Set to zeros
         ReDim Registers(15)
         ReDim Memory(65535)
+        'Paste code into memory directly
         Array.Copy(Code, Memory, Code.Length)
         State = States.Idle
     End Sub
@@ -40,11 +41,11 @@ Public Class Executor
         Dim Field3 As Byte
         Dim Data As UInt16
         While True
-            While State <> States.Executing 'Save on cpu resources when paused etc
+            While State <> States.Executing 'Save on cpu resources when paused, idle, or stepping.
                 Threading.Thread.Sleep(100)
             End While
 
-            StepOnce(False, Word, OpCode, Field1, Field2, Field3, Data)
+            StepOnce(False, Word, OpCode, Field1, Field2, Field3, Data) 'Send it ByRef to save on time when objects are created/destroyed
 
         End While
     End Sub
@@ -56,12 +57,12 @@ Public Class Executor
         End If
 
         Word = GetWord()
-        OpCode = (Word And CType(&HF000, UInt16)) >> 12
-        Field1 = (Word And CType(&HF00, UInt16)) >> 8
-        Field2 = (Word And CType(&HF0, UInt16)) >> 4
-        Field3 = (Word And CType(&HF, UInt16))
+        OpCode = (Word And CType(&HF000, UInt16)) >> 12 'Masks to get only the first nibble
+        Field1 = (Word And CType(&HF00, UInt16)) >> 8   'Masks to get only the second nibble
+        Field2 = (Word And CType(&HF0, UInt16)) >> 4    'Masks to get only the 3rd nibble
+        Field3 = (Word And CType(&HF, UInt16))          'Masks to get only the 4th nibble
 
-        If (OpCode = &H0) Or (OpCode = &H1) Or (OpCode = &H3) Or (OpCode = &HA) Then 'Load data (next word) if needed
+        If (OpCode = OpCodes.LOADIMM) Or (OpCode = OpCodes.LOAD) Or (OpCode = OpCodes.STORE) Or (OpCode = OpCodes.JUMP) Then 'Load data (next word) if needed
             IncrementPC()
             Data = GetWord()
         End If
@@ -104,7 +105,7 @@ Public Class Executor
                 Registers(Field1) = Temp \ CType(2, Int16)
                 IncrementPC()
             Case OpCodes.JUMP
-                Select Case Field3
+                Select Case Field3 'CC Field
                     Case JumpCC.AL
                         Registers(15) = Data
                     Case JumpCC.LT
@@ -170,11 +171,12 @@ Public Class Executor
                 End Select
                 IncrementPC()
             Case Else 'Unknown instruction. Skip over.
-                'A real CPU would either continue, stop, crash, or burn up.
+                'A real CPU would either continue, stop, lock up, or burn up.
                 'Hence why it is vital that only valid instructions occur and random jumps don't happen on real hardware.
                 IncrementPC()
         End Select
 
+        'As only one instruction is executed at a time, it is impossible for R0 to be anything besides 0.
         Registers(0) = 0 'Register zero is always zero.
         Cycles += 1
     End Sub
@@ -208,8 +210,8 @@ Public Enum OpCodes
     SHIFTR
     JUMP
     JUMPIDX
-    UNDEFINED1
-    UNDEFINED2
+    UNDEFINED1 'C
+    UNDEFINED2 'D
     READIO
     WRITEIO
 End Enum
@@ -224,6 +226,3 @@ Public Enum JumpCC
     AB
     NE
 End Enum
-
-
-Public Shared Event Test(data As UInt16)

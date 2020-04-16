@@ -57,8 +57,7 @@ Partial Class Main
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(12, 4, 0, 4)
-        Me.MenuStrip1.Size = New System.Drawing.Size(680, 44)
+        Me.MenuStrip1.Size = New System.Drawing.Size(340, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -67,90 +66,88 @@ Partial Class Main
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.QuitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(72, 36)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
         Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(294, 44)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.OpenToolStripMenuItem.Text = "Open"
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
         Me.QuitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(294, 44)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.QuitToolStripMenuItem.Text = "Quit"
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegistersToolStripMenuItem, Me.MemoryToolStripMenuItem, Me.PeripheralBusToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(86, 36)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'RegistersToolStripMenuItem
         '
         Me.RegistersToolStripMenuItem.Name = "RegistersToolStripMenuItem"
-        Me.RegistersToolStripMenuItem.Size = New System.Drawing.Size(300, 44)
+        Me.RegistersToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
         Me.RegistersToolStripMenuItem.Text = "Registers"
         '
         'MemoryToolStripMenuItem
         '
         Me.MemoryToolStripMenuItem.Name = "MemoryToolStripMenuItem"
-        Me.MemoryToolStripMenuItem.Size = New System.Drawing.Size(300, 44)
+        Me.MemoryToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
         Me.MemoryToolStripMenuItem.Text = "Memory"
         '
         'PeripheralBusToolStripMenuItem
         '
         Me.PeripheralBusToolStripMenuItem.Name = "PeripheralBusToolStripMenuItem"
-        Me.PeripheralBusToolStripMenuItem.Size = New System.Drawing.Size(300, 44)
+        Me.PeripheralBusToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
         Me.PeripheralBusToolStripMenuItem.Text = "Peripheral Bus"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.CurrentStatus, Me.ToolStripStatusLabel2, Me.ClockSpeedStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 289)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 150)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 28, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(680, 42)
+        Me.StatusStrip1.Size = New System.Drawing.Size(340, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(178, 32)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(88, 17)
         Me.ToolStripStatusLabel1.Text = "Current Status: "
         '
         'CurrentStatus
         '
         Me.CurrentStatus.Name = "CurrentStatus"
-        Me.CurrentStatus.Size = New System.Drawing.Size(54, 32)
+        Me.CurrentStatus.Size = New System.Drawing.Size(26, 17)
         Me.CurrentStatus.Text = "Idle"
         '
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(149, 32)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(74, 17)
         Me.ToolStripStatusLabel2.Text = "Clock speed:"
         '
         'ClockSpeedStatus
         '
         Me.ClockSpeedStatus.Name = "ClockSpeedStatus"
-        Me.ClockSpeedStatus.Size = New System.Drawing.Size(56, 32)
+        Me.ClockSpeedStatus.Size = New System.Drawing.Size(27, 17)
         Me.ClockSpeedStatus.Text = "0Hz"
         '
         'OffButton
         '
         Me.OffButton.Enabled = False
-        Me.OffButton.Location = New System.Drawing.Point(186, 52)
-        Me.OffButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.OffButton.Location = New System.Drawing.Point(93, 27)
         Me.OffButton.Name = "OffButton"
-        Me.OffButton.Size = New System.Drawing.Size(150, 44)
+        Me.OffButton.Size = New System.Drawing.Size(75, 23)
         Me.OffButton.TabIndex = 3
         Me.OffButton.Text = "Power Off"
         Me.OffButton.UseVisualStyleBackColor = True
@@ -158,10 +155,9 @@ Partial Class Main
         'PauseButton
         '
         Me.PauseButton.Enabled = False
-        Me.PauseButton.Location = New System.Drawing.Point(348, 52)
-        Me.PauseButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.PauseButton.Location = New System.Drawing.Point(174, 27)
         Me.PauseButton.Name = "PauseButton"
-        Me.PauseButton.Size = New System.Drawing.Size(150, 44)
+        Me.PauseButton.Size = New System.Drawing.Size(75, 23)
         Me.PauseButton.TabIndex = 4
         Me.PauseButton.Text = "Pause"
         Me.PauseButton.UseVisualStyleBackColor = True
@@ -169,10 +165,9 @@ Partial Class Main
         'OnButton
         '
         Me.OnButton.Enabled = False
-        Me.OnButton.Location = New System.Drawing.Point(24, 52)
-        Me.OnButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.OnButton.Location = New System.Drawing.Point(12, 27)
         Me.OnButton.Name = "OnButton"
-        Me.OnButton.Size = New System.Drawing.Size(150, 44)
+        Me.OnButton.Size = New System.Drawing.Size(75, 23)
         Me.OnButton.TabIndex = 5
         Me.OnButton.Text = "Power on"
         Me.OnButton.UseVisualStyleBackColor = True
@@ -180,10 +175,9 @@ Partial Class Main
         'ResetButton
         '
         Me.ResetButton.Enabled = False
-        Me.ResetButton.Location = New System.Drawing.Point(510, 52)
-        Me.ResetButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.ResetButton.Location = New System.Drawing.Point(255, 27)
         Me.ResetButton.Name = "ResetButton"
-        Me.ResetButton.Size = New System.Drawing.Size(150, 44)
+        Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 9
         Me.ResetButton.Text = "Reset"
         Me.ResetButton.UseVisualStyleBackColor = True
@@ -191,20 +185,18 @@ Partial Class Main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 158)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label2.Location = New System.Drawing.Point(9, 82)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(216, 25)
+        Me.Label2.Size = New System.Drawing.Size(106, 13)
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Current selected file: "
         '
         'SelectedFile
         '
-        Me.SelectedFile.Location = New System.Drawing.Point(24, 188)
-        Me.SelectedFile.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.SelectedFile.Location = New System.Drawing.Point(12, 98)
         Me.SelectedFile.Name = "SelectedFile"
         Me.SelectedFile.ReadOnly = True
-        Me.SelectedFile.Size = New System.Drawing.Size(628, 31)
+        Me.SelectedFile.Size = New System.Drawing.Size(316, 20)
         Me.SelectedFile.TabIndex = 11
         '
         'OpenFileDialog1
@@ -222,10 +214,9 @@ Partial Class Main
         'ResumeButton
         '
         Me.ResumeButton.Enabled = False
-        Me.ResumeButton.Location = New System.Drawing.Point(348, 108)
-        Me.ResumeButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.ResumeButton.Location = New System.Drawing.Point(174, 56)
         Me.ResumeButton.Name = "ResumeButton"
-        Me.ResumeButton.Size = New System.Drawing.Size(150, 44)
+        Me.ResumeButton.Size = New System.Drawing.Size(75, 23)
         Me.ResumeButton.TabIndex = 12
         Me.ResumeButton.Text = "Resume"
         Me.ResumeButton.UseVisualStyleBackColor = True
@@ -233,19 +224,18 @@ Partial Class Main
         'StepButton
         '
         Me.StepButton.Enabled = False
-        Me.StepButton.Location = New System.Drawing.Point(186, 108)
-        Me.StepButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.StepButton.Location = New System.Drawing.Point(93, 56)
         Me.StepButton.Name = "StepButton"
-        Me.StepButton.Size = New System.Drawing.Size(150, 44)
+        Me.StepButton.Size = New System.Drawing.Size(75, 23)
         Me.StepButton.TabIndex = 13
         Me.StepButton.Text = "Step"
         Me.StepButton.UseVisualStyleBackColor = True
         '
         'Main
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(680, 331)
+        Me.ClientSize = New System.Drawing.Size(340, 172)
         Me.Controls.Add(Me.StepButton)
         Me.Controls.Add(Me.ResumeButton)
         Me.Controls.Add(Me.SelectedFile)
@@ -257,7 +247,7 @@ Partial Class Main
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "Main"
         Me.Text = "RISC 16 Simulator"
         Me.MenuStrip1.ResumeLayout(False)
