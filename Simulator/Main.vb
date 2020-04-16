@@ -13,7 +13,12 @@
         SelectedFile.Text = path
 
         Code = FileIO.FileSystem.ReadAllText(path)
-        Executor.Code = Parser.Parse(Code)
+        Try
+            Executor.Code = Parser.Parse(Code)
+        Catch er As Exception
+            MessageBox.Show("Code file was malformed: " + er.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
         FileOpened = True
         OnButton.Enabled = True
         ResetButton.Enabled = True
