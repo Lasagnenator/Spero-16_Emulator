@@ -22,7 +22,9 @@ Partial Class Graphics
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GraphicsDisplay = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.GraphicsDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -35,6 +37,10 @@ Partial Class Graphics
         Me.GraphicsDisplay.Size = New System.Drawing.Size(240, 217)
         Me.GraphicsDisplay.TabIndex = 0
         Me.GraphicsDisplay.TabStop = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 16
         '
         'Graphics
         '
@@ -50,4 +56,5 @@ Partial Class Graphics
     End Sub
 
     Friend WithEvents GraphicsDisplay As PictureBox
+    Friend WithEvents Timer1 As Timer
 End Class

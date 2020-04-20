@@ -78,6 +78,12 @@
   <ItemGroup>
     <Compile Include="Definitions.vb" />
     <Compile Include="Executor.vb" />
+    <Compile Include="LED.Designer.vb">
+      <DependentUpon>LED.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LED.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     <Compile Include="Peripheral0.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PushBtn.Designer.vb">
+      <DependentUpon>PushBtn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PushBtn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Registers.Designer.vb">
       <DependentUpon>Registers.vb</DependentUpon>
     </Compile>
@@ -127,6 +139,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LED.resx">
+      <DependentUpon>LED.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Peripheral0.resx">
       <DependentUpon>Peripheral0.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PushBtn.resx">
+      <DependentUpon>PushBtn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registers.resx">
       <DependentUpon>Registers.vb</DependentUpon>

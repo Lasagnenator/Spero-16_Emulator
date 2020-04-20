@@ -3,6 +3,8 @@
     Private Code As String = ""
     Private Prev As Stopwatch = New Stopwatch()
     Private ThreadMade As Boolean = False
+
+    Public Shared GlobalLock As New Threading.SpinLock
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Executor.State <> States.Idle Then
             MessageBox.Show("Machine is not idle!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -42,7 +44,7 @@
     End Sub
 
     Private Sub PeripheralBusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeripheralBusToolStripMenuItem.Click
-
+        Graphics.Show()
     End Sub
 
     Private Sub OnButton_Click(sender As Object, e As EventArgs) Handles OnButton.Click
@@ -63,7 +65,6 @@
         End If
         Dim Work As Threading.Thread
         Work = New Threading.Thread(AddressOf Executor.ExecutionLoop)
-        Work.IsBackground = True
         Work.Name = "Executor"
 
         Work.Start()
@@ -151,5 +152,6 @@
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Prev.Start()
+
     End Sub
 End Class

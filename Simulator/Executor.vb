@@ -157,8 +157,12 @@ Public Class Executor
                 Registers(15) = Registers(Field1)
             Case OpCodes.READIO
                 Select Case Field2
-                    Case 0
-                        Registers(Field1) = Peripheral0.DataToRegister()
+                    Case 0 To 2
+                        Registers(Field1) = 0
+                    Case &H10
+                        Registers(Field1) = PushBtn.GetBtn()
+                    Case &H20
+                        Registers(Field1) = LED.DataOut()
                     Case Else
                         Registers(Field1) = 0
                 End Select
@@ -166,7 +170,13 @@ Public Class Executor
             Case OpCodes.WRITEIO
                 Select Case Field2
                     Case 0
-                        Peripheral0.DataFromRegister(Registers(Field1))
+                        Graphics.XPosIn(Registers(Field1))
+                    Case 1
+                        Graphics.YPosIn(Registers(Field1))
+                    Case 2
+                        Graphics.CIn(Registers(Field1))
+                    Case &H20
+                        LED.DataIn(Registers(Field1))
                         'No default case as the write is unused elsewhere
                 End Select
                 IncrementPC()
