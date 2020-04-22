@@ -47,6 +47,7 @@ Public Class Executor
 
             StepOnce(False, Word, OpCode, Field1, Field2, Field3, Data) 'Send it ByRef to save on time when objects are created/destroyed
 
+            'Application.DoEvents() 'If uncommented, allows for the loop to be called from the main thread.
         End While
     End Sub
 
@@ -156,7 +157,7 @@ Public Class Executor
             Case OpCodes.JUMPIDX
                 Registers(15) = Registers(Field1)
             Case OpCodes.READIO
-                Select Case Field2
+                Select Case Registers(Field2)
                     Case 0 To 2
                         Registers(Field1) = 0
                     Case &H10
@@ -168,12 +169,21 @@ Public Class Executor
                 End Select
                 IncrementPC()
             Case OpCodes.WRITEIO
-                Select Case Field2
+                Select Case Registers(Field2)
                     Case 0
                         Graphics.XPosIn(Registers(Field1))
                     Case 1
                         Graphics.YPosIn(Registers(Field1))
                     Case 2
+                        'Prevent the executor from going too far ahead of graphics
+                        If Graphics.Buffer.Count > 16383 Then
+                            While Graphics.Buffer.Count <> 0
+
+                            End While
+                        End If
+                        'While Graphics.Buffer.Count > 100
+
+                        'End While
                         Graphics.CIn(Registers(Field1))
                     Case &H20
                         LED.DataIn(Registers(Field1))

@@ -22,146 +22,151 @@ Partial Class LED
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton6 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton7 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton8 = New System.Windows.Forms.RadioButton()
+        Me.components = New System.ComponentModel.Container()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox7 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox8 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
-        'RadioButton1
+        'Timer1
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton1.Enabled = False
-        Me.RadioButton1.Location = New System.Drawing.Point(173, 12)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "1"
-        Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'RadioButton2
+        'CheckBox1
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton2.Enabled = False
-        Me.RadioButton2.Location = New System.Drawing.Point(150, 12)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "2"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox1.Enabled = False
+        Me.CheckBox1.Location = New System.Drawing.Point(173, 11)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox1.TabIndex = 8
+        Me.CheckBox1.Text = "0"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'RadioButton3
+        'CheckBox2
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton3.Enabled = False
-        Me.RadioButton3.Location = New System.Drawing.Point(127, 12)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton3.TabIndex = 2
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "3"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox2.Enabled = False
+        Me.CheckBox2.Location = New System.Drawing.Point(150, 11)
+        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox2.TabIndex = 9
+        Me.CheckBox2.Text = "1"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
-        'RadioButton4
+        'CheckBox3
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton4.Enabled = False
-        Me.RadioButton4.Location = New System.Drawing.Point(104, 12)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton4.TabIndex = 3
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "4"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox3.Enabled = False
+        Me.CheckBox3.Location = New System.Drawing.Point(127, 11)
+        Me.CheckBox3.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox3.TabIndex = 10
+        Me.CheckBox3.Text = "2"
+        Me.CheckBox3.UseVisualStyleBackColor = True
         '
-        'RadioButton5
+        'CheckBox4
         '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton5.Enabled = False
-        Me.RadioButton5.Location = New System.Drawing.Point(81, 12)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton5.TabIndex = 4
-        Me.RadioButton5.TabStop = True
-        Me.RadioButton5.Text = "5"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox4.Enabled = False
+        Me.CheckBox4.Location = New System.Drawing.Point(104, 11)
+        Me.CheckBox4.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox4.Name = "CheckBox4"
+        Me.CheckBox4.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox4.TabIndex = 11
+        Me.CheckBox4.Text = "3"
+        Me.CheckBox4.UseVisualStyleBackColor = True
         '
-        'RadioButton6
+        'CheckBox5
         '
-        Me.RadioButton6.AutoSize = True
-        Me.RadioButton6.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton6.Enabled = False
-        Me.RadioButton6.Location = New System.Drawing.Point(58, 12)
-        Me.RadioButton6.Name = "RadioButton6"
-        Me.RadioButton6.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton6.TabIndex = 5
-        Me.RadioButton6.TabStop = True
-        Me.RadioButton6.Text = "6"
-        Me.RadioButton6.UseVisualStyleBackColor = True
+        Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox5.Enabled = False
+        Me.CheckBox5.Location = New System.Drawing.Point(81, 11)
+        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox5.Name = "CheckBox5"
+        Me.CheckBox5.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox5.TabIndex = 12
+        Me.CheckBox5.Text = "4"
+        Me.CheckBox5.UseVisualStyleBackColor = True
         '
-        'RadioButton7
+        'CheckBox6
         '
-        Me.RadioButton7.AutoSize = True
-        Me.RadioButton7.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton7.Enabled = False
-        Me.RadioButton7.Location = New System.Drawing.Point(35, 12)
-        Me.RadioButton7.Name = "RadioButton7"
-        Me.RadioButton7.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton7.TabIndex = 6
-        Me.RadioButton7.TabStop = True
-        Me.RadioButton7.Text = "7"
-        Me.RadioButton7.UseVisualStyleBackColor = True
+        Me.CheckBox6.AutoSize = True
+        Me.CheckBox6.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox6.Enabled = False
+        Me.CheckBox6.Location = New System.Drawing.Point(58, 11)
+        Me.CheckBox6.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox6.Name = "CheckBox6"
+        Me.CheckBox6.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox6.TabIndex = 13
+        Me.CheckBox6.Text = "5"
+        Me.CheckBox6.UseVisualStyleBackColor = True
         '
-        'RadioButton8
+        'CheckBox7
         '
-        Me.RadioButton8.AutoSize = True
-        Me.RadioButton8.CheckAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RadioButton8.Enabled = False
-        Me.RadioButton8.Location = New System.Drawing.Point(12, 12)
-        Me.RadioButton8.Name = "RadioButton8"
-        Me.RadioButton8.Size = New System.Drawing.Size(17, 30)
-        Me.RadioButton8.TabIndex = 7
-        Me.RadioButton8.TabStop = True
-        Me.RadioButton8.Text = "8"
-        Me.RadioButton8.UseVisualStyleBackColor = True
+        Me.CheckBox7.AutoSize = True
+        Me.CheckBox7.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox7.Enabled = False
+        Me.CheckBox7.Location = New System.Drawing.Point(35, 11)
+        Me.CheckBox7.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox7.Name = "CheckBox7"
+        Me.CheckBox7.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox7.TabIndex = 14
+        Me.CheckBox7.Text = "6"
+        Me.CheckBox7.UseVisualStyleBackColor = True
+        '
+        'CheckBox8
+        '
+        Me.CheckBox8.AutoSize = True
+        Me.CheckBox8.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CheckBox8.Enabled = False
+        Me.CheckBox8.Location = New System.Drawing.Point(11, 11)
+        Me.CheckBox8.Margin = New System.Windows.Forms.Padding(2)
+        Me.CheckBox8.Name = "CheckBox8"
+        Me.CheckBox8.Size = New System.Drawing.Size(17, 31)
+        Me.CheckBox8.TabIndex = 15
+        Me.CheckBox8.Text = "7"
+        Me.CheckBox8.UseVisualStyleBackColor = True
         '
         'LED
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(201, 56)
-        Me.Controls.Add(Me.RadioButton8)
-        Me.Controls.Add(Me.RadioButton7)
-        Me.Controls.Add(Me.RadioButton6)
-        Me.Controls.Add(Me.RadioButton5)
-        Me.Controls.Add(Me.RadioButton4)
-        Me.Controls.Add(Me.RadioButton3)
-        Me.Controls.Add(Me.RadioButton2)
-        Me.Controls.Add(Me.RadioButton1)
+        Me.ClientSize = New System.Drawing.Size(200, 53)
+        Me.Controls.Add(Me.CheckBox8)
+        Me.Controls.Add(Me.CheckBox7)
+        Me.Controls.Add(Me.CheckBox6)
+        Me.Controls.Add(Me.CheckBox5)
+        Me.Controls.Add(Me.CheckBox4)
+        Me.Controls.Add(Me.CheckBox3)
+        Me.Controls.Add(Me.CheckBox2)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Name = "LED"
         Me.Text = "LED Panel"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton3 As RadioButton
-    Friend WithEvents RadioButton4 As RadioButton
-    Friend WithEvents RadioButton5 As RadioButton
-    Friend WithEvents RadioButton6 As RadioButton
-    Friend WithEvents RadioButton7 As RadioButton
-    Friend WithEvents RadioButton8 As RadioButton
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents CheckBox7 As CheckBox
+    Friend WithEvents CheckBox8 As CheckBox
 End Class

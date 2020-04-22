@@ -34,7 +34,8 @@ Partial Class Graphics
         Me.GraphicsDisplay.Location = New System.Drawing.Point(0, 0)
         Me.GraphicsDisplay.Margin = New System.Windows.Forms.Padding(0)
         Me.GraphicsDisplay.Name = "GraphicsDisplay"
-        Me.GraphicsDisplay.Size = New System.Drawing.Size(240, 217)
+        Me.GraphicsDisplay.Size = New System.Drawing.Size(474, 429)
+        Me.GraphicsDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.GraphicsDisplay.TabIndex = 0
         Me.GraphicsDisplay.TabStop = False
         '
@@ -44,10 +45,11 @@ Partial Class Graphics
         '
         'Graphics
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(240, 217)
+        Me.ClientSize = New System.Drawing.Size(474, 429)
         Me.Controls.Add(Me.GraphicsDisplay)
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Name = "Graphics"
         Me.Text = "Graphics"
         CType(Me.GraphicsDisplay, System.ComponentModel.ISupportInitialize).EndInit()

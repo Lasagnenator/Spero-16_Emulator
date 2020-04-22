@@ -4,7 +4,6 @@
     Private Prev As Stopwatch = New Stopwatch()
     Private ThreadMade As Boolean = False
 
-    Public Shared GlobalLock As New Threading.SpinLock
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Executor.State <> States.Idle Then
             MessageBox.Show("Machine is not idle!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -45,6 +44,7 @@
 
     Private Sub PeripheralBusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeripheralBusToolStripMenuItem.Click
         Graphics.Show()
+        LED.Show()
     End Sub
 
     Private Sub OnButton_Click(sender As Object, e As EventArgs) Handles OnButton.Click
@@ -60,14 +60,16 @@
         StepButton.Enabled = False
 
         Executor.PowerOn()
+        'Executor.ExecutionLoop()
         If ThreadMade Then 'Don't keep making new threads
             Exit Sub
         End If
+
         Dim Work As Threading.Thread
         Work = New Threading.Thread(AddressOf Executor.ExecutionLoop)
         Work.Name = "Executor"
-
         Work.Start()
+        ThreadMade = True
     End Sub
 
     Private Sub OffButton_Click(sender As Object, e As EventArgs) Handles OffButton.Click
