@@ -3,6 +3,7 @@
     Private Code As String = ""
     Private CycleTimer As Stopwatch = New Stopwatch()
     Private ThreadMade As Boolean = False
+    Private Work As Threading.Thread
 
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Executor.State <> States.Idle Then
@@ -65,7 +66,6 @@
             Exit Sub
         End If
 
-        Dim Work As Threading.Thread
         Work = New Threading.Thread(AddressOf Executor.ExecutionLoop)
         Work.Name = "Executor"
         Work.Start()
@@ -149,6 +149,18 @@
         Memory.ListBox1.Items.Clear()
         Memory.ListBox2.Items.Clear()
         Memory.Timer1.Enabled = False
+        Graphics.Timer1.Enabled = False
+        Registers.Timer1.Enabled = False
+        LED.Timer1.Enabled = False
+        Registers.ListBox1.Items.Clear()
+        Registers.ListBox2.Items.Clear()
+        Memory.Dispose()
+        Registers.Dispose()
+        LED.Dispose()
+        PushBtn.Dispose()
+        Graphics.Dispose()
+        Work.Abort()
+
         Return
     End Sub
 

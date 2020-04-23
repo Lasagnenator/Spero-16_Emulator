@@ -4,7 +4,7 @@ load    Rc,3efc   ;--> 1C00 3efc
 
 load    R4 , *R5  ;--> 2450
 
-store   R0,3efc   ;--> 3000 3efc (Always writes zero as R0 is always zero)
+sToRe   R0,3eFc   ;--> 3000 3efc (Always writes zero as R0 is always zero)
 .start
 store   R1,*R2    ;--> 4120
 add     R7,R8,R9  ;--> 5789
@@ -31,3 +31,4 @@ jump    .start    ;--> A000 0007 (backward reference)
 
 load    R4,.end   ;--> 1400 0020
 store   R5,.end   ;--> 3500 0020
+load    r6,#.end  ;--> 0600 0020
