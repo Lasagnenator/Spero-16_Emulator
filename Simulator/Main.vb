@@ -1,7 +1,7 @@
 ﻿Public Class Main
     Private FileOpened As Boolean = False
     Private Code As String = ""
-    Private Prev As Stopwatch = New Stopwatch()
+    Private CycleTimer As Stopwatch = New Stopwatch()
     Private ThreadMade As Boolean = False
 
     Private Sub OpenFile(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
@@ -60,7 +60,7 @@
         StepButton.Enabled = False
 
         Executor.PowerOn()
-        'Executor.ExecutionLoop()
+
         If ThreadMade Then 'Don't keep making new threads
             Exit Sub
         End If
@@ -130,8 +130,8 @@
         CurrentStatus.Text = ExecutorStatus
 
 
-        Dim ms As Long = Prev.ElapsedMilliseconds
-        Prev.Restart()
+        Dim ms As Long = CycleTimer.ElapsedMilliseconds
+        CycleTimer.Restart()
         'Using this as a more accurate representation of time elapsed
         'As Timer has a +-14ms range, it is not accurate enough for these high clock speeds
 
@@ -153,7 +153,7 @@
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Prev.Start()
+        CycleTimer.Start()
 
     End Sub
 End Class

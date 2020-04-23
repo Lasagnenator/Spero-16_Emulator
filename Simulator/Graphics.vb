@@ -4,7 +4,6 @@ Public Class Graphics
     'I set the refresh rate to 60Hz but this could easily be increased
     '128x128 screen
     Public Shared bit As Bitmap = New Bitmap(128, 128)
-    Public Shared Value As UInt16 = 0
 
     Public Shared XPos As Byte = 0
     Public Shared YPos As Byte = 0

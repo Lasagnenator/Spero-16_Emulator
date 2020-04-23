@@ -10,11 +10,10 @@ label_table = dict()
 class Line:
     pc = -1 #memory address of the start of this instruction
     noop = True #set to false if valid operation
-    jump_addr = -1 #-1 means unset. Any positive value is valid (0<=x<=65535)
+    addr = "" #"" means unset. Any positive value is valid (0<=x<=65535)
     has_data = False #whether there is a 16 bit data on the end
 
     is_label = False
-    is_jump = False
     has_reference = False
 
     bin_instruction = ""
@@ -166,7 +165,6 @@ class Line:
             self.noop = False
             
             if split[1][-1][0] == ".": #address is a label, process later
-                self.is_jump = True
                 self.has_data = True
                 self.has_reference = True
 
@@ -249,7 +247,7 @@ def make_asm(file_path):
         for line in file:
             temp1 = line.replace("\n", "")
             temp2 = Line(temp1)
-            if not temp2.noop:
+            if not temp2.noop: #remove noop's as soon as possible
                 lines.append(Line(temp1))
 
         print("Pass 2: Update pc of each instruction")

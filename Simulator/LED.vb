@@ -1,7 +1,6 @@
 ﻿Public Class LED
     Public LEDs As CheckBox()
     Public Shared Value As UInt16 = 0
-    Public Shared ReadOnly monitor As New Object
 
     Public Sub DataIn(data As UInt16)
         'Do not need to use a queue here as no past writes are needed to be known
