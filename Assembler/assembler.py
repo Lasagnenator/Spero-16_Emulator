@@ -3,6 +3,9 @@
 #
 #
 
+import sys #error displaying
+failure = False #if at least one error present
+
 #table of label, addr, references
 label_table = dict()
 #E.g. {".label" : 3f}
@@ -242,7 +245,8 @@ class Line:
         self.bin_instruction = self.bin_instruction.replace(label, addr)
 
 def make_asm(file_path):
-    global label_table, lineno
+    global label_table, lineno, failure
+    failure = False
     label_table = dict()
     with open(file_path, "r") as file:
         lines = []
@@ -250,9 +254,15 @@ def make_asm(file_path):
         print("Pass 1: Collecting instructions")
         for line in file:
             temp1 = line.replace("\n", "")
-            temp2 = Line(temp1, lineno)
+            
+            try:
+                temp2 = Line(temp1, lineno)
+            except:
+                print("({}) {}".format(lineno, sys.exc_info()[1]))
+                failure = True
+                
             if not temp2.noop: #remove noop's as soon as possible
-                lines.append(Line(temp1))
+                lines.append(temp2)
             lineno += 1 #increment the line counter
 
         print("Pass 2: Update pc of each instruction")
@@ -261,7 +271,13 @@ def make_asm(file_path):
             lineno = line.lineno
             line.pc = counter
             if line.is_label:
-                line.UpdateLabel()
+                
+                try:
+                    line.UpdateLabel()
+                except:
+                    print("({}) {}".format(lineno, sys.exc_info()[1]))
+                    failure = True
+                    
                 continue #don't increment counter
             counter += 1
             if line.has_data:
@@ -271,7 +287,11 @@ def make_asm(file_path):
         for line in lines:
             lineno = line.lineno
             if line.has_reference:
-                line.UpdateReference()
+                try:
+                    line.UpdateReference()
+                except:
+                    print("({}) {}".format(lineno, sys.exc_info()[1]))
+                    dailure = True
 
     asm = ""
     for line in lines:

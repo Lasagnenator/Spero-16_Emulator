@@ -12,17 +12,23 @@ class MainFrameClass(Frames.MainFrame):
         file_path = self.OpenFilePicker.GetPath()
         try:
             asm = assembler.make_asm(file_path)
-        except:
+        except: #errors not handled by the assembler
             message = str(sys.exc_info()[1])
-            wx.MessageDialog(self, "({}) ".format(assembler.lineno)+message, caption="Error!",
+            wx.MessageDialog(self, message, caption="Error!",
                              style=wx.OK|wx.ICON_ERROR).ShowModal()
             self.statusbar.SetStatusText("Failure")
             print("Failure")
             return
+
+        if assembler.failure:
+            self.statusbar.SetStatusText("Failure")
+            print("Failure")
+            return
+        
         out_file = self.SaveFilePicker.GetPath()
         with open(out_file, "w+") as file:
             file.write(asm)
-        self.statusbar.SetStatusText("Completed")
+        self.statusbar.SetStatusText("Success")
         print("Success")
 
 
