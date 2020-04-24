@@ -8,6 +8,7 @@ label_table = dict()
 #E.g. {".label" : [-1, [3,5...]]}
 
 class Line:
+    lineno = -1 #line number in the input file
     pc = -1 #memory address of the start of this instruction
     noop = True #set to false if valid operation
     addr = "" #"" means unset. Any positive value is valid (0<=x<=65535)
@@ -18,8 +19,9 @@ class Line:
 
     bin_instruction = ""
     
-    def __init__(self, string):
+    def __init__(self, string, lineno):
         self.string = string
+        self.lineno = lineno
         #self.pc = pc
         self.Parse()
 
@@ -38,7 +40,7 @@ class Line:
         elif string[0] == ".": #label
 
             if string.count(" ")>0:
-                raise RuntimeError("Label `{}` cannot have spaces in it!".format(self.string))
+                raise RuntimeError("Label `{}` cannot have spaces in it! ()".format(self.string, self.lineno))
             
             self.noop = False
             self.is_label = True
@@ -209,7 +211,7 @@ class Line:
                 self.bin_instruction = "A{}{}7 {}".format(self.Rn, self.Rm, self.addr)
 
         else: #invalid instruction
-            raise RuntimeError("Unknown instruction: {}".format(self.string))
+            raise RuntimeError("Unknown instruction: ({}) {}".format(self.lineno, self.string))
 
         return
 
@@ -218,7 +220,7 @@ class Line:
         string = self.string.upper()
         try:
             if label_table[string] != -1: #already exists
-                raise RuntimeError("Label: {} is being defined twice!".format(self.string))
+                raise RuntimeError("Label: {} is being defined twice! ({})".format(self.string, self.lineno))
             #is -1, so we can define it
             label_table[string] = self.pc
         except KeyError:
@@ -229,7 +231,7 @@ class Line:
     def UpdateReference(self):
         label = self.addr
         if label not in label_table:
-            raise RuntimeError("Label `{}` not defined!".format(label))
+            raise RuntimeError("Label `{}` not defined! ({})".format(label, self.lineno))
         addr = label_table[label]
         addr = hex(addr)[2:].rjust(4, "0")
 
@@ -242,13 +244,14 @@ def make_asm(file_path):
     label_table = dict()
     with open(file_path, "r") as file:
         lines = []
-        
+        lineno = 1
         print("Pass 1: Collecting instructions")
         for line in file:
             temp1 = line.replace("\n", "")
-            temp2 = Line(temp1)
+            temp2 = Line(temp1, lineno)
             if not temp2.noop: #remove noop's as soon as possible
                 lines.append(Line(temp1))
+            lineno += 1 #increment the line counter
 
         print("Pass 2: Update pc of each instruction")
         counter = 0
