@@ -5,7 +5,9 @@
 
 #table of label, addr, references
 label_table = dict()
-#E.g. {".label" : [-1, [3,5...]]}
+#E.g. {".label" : 3f}
+
+lineno = 1 #line numbers for error reporting.
 
 class Line:
     lineno = -1 #line number in the input file
@@ -40,7 +42,7 @@ class Line:
         elif string[0] == ".": #label
 
             if string.count(" ")>0:
-                raise RuntimeError("Label `{}` cannot have spaces in it! ()".format(self.string, self.lineno))
+                raise RuntimeError("Label `{}` cannot have spaces in it!".format(self.string))
             
             self.noop = False
             self.is_label = True
@@ -211,7 +213,7 @@ class Line:
                 self.bin_instruction = "A{}{}7 {}".format(self.Rn, self.Rm, self.addr)
 
         else: #invalid instruction
-            raise RuntimeError("Unknown instruction: ({}) {}".format(self.lineno, self.string))
+            raise RuntimeError("Unknown instruction: {}".format(self.string))
 
         return
 
@@ -220,7 +222,7 @@ class Line:
         string = self.string.upper()
         try:
             if label_table[string] != -1: #already exists
-                raise RuntimeError("Label: {} is being defined twice! ({})".format(self.string, self.lineno))
+                raise RuntimeError("Label: {} is being defined twice!".format(self.string))
             #is -1, so we can define it
             label_table[string] = self.pc
         except KeyError:
@@ -231,7 +233,7 @@ class Line:
     def UpdateReference(self):
         label = self.addr
         if label not in label_table:
-            raise RuntimeError("Label `{}` not defined! ({})".format(label, self.lineno))
+            raise RuntimeError("Label `{}` not defined!".format(label))
         addr = label_table[label]
         addr = hex(addr)[2:].rjust(4, "0")
 
@@ -240,7 +242,7 @@ class Line:
         self.bin_instruction = self.bin_instruction.replace(label, addr)
 
 def make_asm(file_path):
-    global label_table
+    global label_table, lineno
     label_table = dict()
     with open(file_path, "r") as file:
         lines = []
@@ -256,6 +258,7 @@ def make_asm(file_path):
         print("Pass 2: Update pc of each instruction")
         counter = 0
         for line in lines:
+            lineno = line.lineno
             line.pc = counter
             if line.is_label:
                 line.UpdateLabel()
@@ -266,6 +269,7 @@ def make_asm(file_path):
 
         print("Pass 3: Update lines that have references to labels")
         for line in lines:
+            lineno = line.lineno
             if line.has_reference:
                 line.UpdateReference()
 

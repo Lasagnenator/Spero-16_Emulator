@@ -14,7 +14,7 @@ class MainFrameClass(Frames.MainFrame):
             asm = assembler.make_asm(file_path)
         except:
             message = str(sys.exc_info()[1])
-            wx.MessageDialog(self, message, caption="Error!",
+            wx.MessageDialog(self, "({}) ".format(assembler.lineno)+message, caption="Error!",
                              style=wx.OK|wx.ICON_ERROR).ShowModal()
             self.statusbar.SetStatusText("Failure")
             print("Failure")
