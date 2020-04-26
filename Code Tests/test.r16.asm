@@ -32,3 +32,8 @@ jump    .start    ;--> A000 0007 (backward reference)
 load    R4,.end   ;--> 1400 0020
 store   R5,.end   ;--> 3500 0020
 load    r6,#.end  ;--> 0600 0020
+
+;ds is DefineStorage
+ds      3         ;--> 0000 0000 0000
+dw      456       ;--> 0456
+dw      .end      ;--> 0020

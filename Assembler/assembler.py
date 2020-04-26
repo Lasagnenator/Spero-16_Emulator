@@ -22,6 +22,8 @@ class Line:
     is_label = False
     has_reference = False
 
+    is_ds = False
+
     bin_instruction = ""
     
     def __init__(self, string, lineno):
@@ -215,6 +217,22 @@ class Line:
             elif jumptype == "NE":
                 self.bin_instruction = "A{}{}7 {}".format(self.Rn, self.Rm, self.addr)
 
+        elif split[0] == "DS":
+            self.num = int(split[1][0][:4], 16)
+            self.bin_instruction = "0000" * self.num
+            self.noop = False
+
+        elif split[0] == "DW":
+            if split[1][0][0] == ".": #is a label, process later
+                self.has_reference = True
+                self.noop = False
+                self.bin_instruction = split[1][0]
+                self.addr = split[1][0]
+                return
+            d = hex(int(split[1][0], 16))[2:].rjust(4, "0")
+            self.bin_instruction = d
+            self.noop = False
+
         else: #invalid instruction
             raise RuntimeError("Unknown instruction: {}".format(self.string))
 
@@ -279,6 +297,9 @@ def make_asm(file_path):
                     failure = True
                     
                 continue #don't increment counter
+            if line.is_ds:
+                counter += line.num
+                continue
             counter += 1
             if line.has_data:
                 counter += 1
