@@ -150,10 +150,17 @@ class Line:
             self.bin_instruction = "8{}{}{}".format(Rn,Rm,Rc)
             self.noop = False
 
+        elif split[0] == "XOR":
+            Rn = hex(int(split[1][0][1], 16))[2:]
+            Rm = hex(int(split[1][1][1], 16))[2:]
+            Rc = hex(int(split[1][2][1], 16))[2:]
+            self.bin_instruction = "9{}{}{}".format(Rn,Rm,Rc)
+            self.noop = False
+
         elif split[0] == "SHIFTR":
             Rn = hex(int(split[1][0][1], 16))[2:]
             Rc = hex(int(split[1][1][1], 16))[2:]
-            self.bin_instruction = "9{}0{}".format(Rn,Rc)
+            self.bin_instruction = "A{}0{}".format(Rn,Rc)
             self.noop = False
 
         elif split[0] == "READIO":
@@ -180,13 +187,13 @@ class Line:
             elif jumptype == "": #unconditional. Either pointer or absolute
                 if split[1][0][0] == "R": #pointer
                     Rn = hex(int(split[1][0][1], 16))[2:]
-                    self.bin_instruction = "B{}00".format(Rn)
+                    self.bin_instruction = "C{}00".format(Rn)
                     self.has_data = False
                     
                 else: #absolute address
                     addr = hex(int(split[1][0][:4], 16))[2:]
                     addr = addr.rjust(4, "0")
-                    self.bin_instruction = "A000 {}".format(addr)
+                    self.bin_instruction = "B000 {}".format(addr)
                     self.has_data = True
                 return
 
@@ -201,21 +208,21 @@ class Line:
 
 
             if jumptype == "":
-                self.bin_instruction = "A000 {}".format(self.addr)
+                self.bin_instruction = "B000 {}".format(self.addr)
             elif jumptype == "LT":
-                self.bin_instruction = "A{}{}1 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}1 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "GT":
-                self.bin_instruction = "A{}{}2 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}2 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "EQ":
-                self.bin_instruction = "A{}{}3 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}3 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "NV":
-                self.bin_instruction = "A{}{}4 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}4 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "BL":
-                self.bin_instruction = "A{}{}5 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}5 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "AB":
-                self.bin_instruction = "A{}{}6 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}6 {}".format(self.Rn, self.Rm, self.addr)
             elif jumptype == "NE":
-                self.bin_instruction = "A{}{}7 {}".format(self.Rn, self.Rm, self.addr)
+                self.bin_instruction = "B{}{}7 {}".format(self.Rn, self.Rm, self.addr)
 
         elif split[0] == "DS":
             self.num = int(split[1][0][:4], 16)

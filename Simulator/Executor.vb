@@ -100,6 +100,9 @@ Public Class Executor
             Case OpCodes.BITOR
                 Registers(Field1) = Registers(Field2) Or Registers(Field3)
                 IncrementPC()
+            Case OpCodes.BITXOR
+                Registers(Field1) = Registers(Field2) Xor Registers(Field3)
+                IncrementPC()
             Case OpCodes.SHIFTR
                 Dim Temp As Int16 = Registers(Field1) 'This is a signed shift so conversion is needed
                 Registers(Field3) = Registers(Field1) And CType(1, UInt16)
@@ -227,11 +230,11 @@ Public Enum OpCodes
     SUBTRACT
     BITAND
     BITOR
+    BITXOR
     SHIFTR
     JUMP
     JUMPIDX
-    UNDEFINED1 'C
-    UNDEFINED2 'D
+    UNDEFINED1 'D
     READIO
     WRITEIO
 End Enum
