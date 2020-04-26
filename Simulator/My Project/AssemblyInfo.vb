@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Simulator")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyDescription("A RISC ISA CPU simulator")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Simulator")>
-<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyCopyright("Copyright Matthew Richards ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
