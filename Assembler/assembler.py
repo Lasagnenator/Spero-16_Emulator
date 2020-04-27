@@ -319,12 +319,19 @@ def make_asm(file_path):
                     line.UpdateReference()
                 except:
                     print("({}) {}".format(lineno, sys.exc_info()[1]))
-                    dailure = True
+                    failure = True
 
     asm = ""
     for line in lines:
         asm += line.bin_instruction
 
     asm = asm.replace(" ", "")
+
+    print("Listings")
+    print("Label\t\tAddress")
+    for item in label_table:
+        print("{}\t:\t{}".format(item, hex(label_table[item])[2:]))
+
+    print("Total words: {}".format(counter))
 
     return asm.upper()

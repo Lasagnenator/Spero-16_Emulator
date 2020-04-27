@@ -131,6 +131,7 @@
     <Compile Include="Registers.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TmrCnt.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LED.resx">

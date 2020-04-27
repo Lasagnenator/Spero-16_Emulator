@@ -35,6 +35,7 @@
         ListBox2.Items.AddRange(Value)
 
         Timer1.Enabled = True
+        ListBox1.SelectedIndex = 0
     End Sub
 
     Private Sub GotoButton_Click(sender As Object, e As EventArgs) Handles GotoButton.Click

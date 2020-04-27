@@ -47,7 +47,7 @@ Public Class Executor
 
             StepOnce(False, Word, OpCode, Field1, Field2, Field3, Data) 'Send it ByRef to save on time when objects are created/destroyed
 
-            'Application.DoEvents() 'If uncommented, allows for the loop to be called from the main thread.
+            'Application.DoEvents() 'If uncommented, allows for the loop to be called from the main thread. Causes a lot of slowdown.
         End While
     End Sub
 
@@ -101,12 +101,12 @@ Public Class Executor
                 Registers(Field1) = Registers(Field2) Or Registers(Field3)
                 IncrementPC()
             Case OpCodes.BITXOR
-                Registers(Field1) = Registers(Field2) Xor Registers(Field3)
+                Registers(Field1) = Registers(Field2) XOr Registers(Field3)
                 IncrementPC()
             Case OpCodes.SHIFTR
                 Dim Temp As Int16 = Registers(Field1) 'This is a signed shift so conversion is needed
-                Registers(Field3) = Registers(Field1) And CType(1, UInt16)
-                Registers(Field1) = Temp \ CType(2, Int16)
+                Registers(Field1) = Temp >> 1
+                Registers(Field3) = Temp And CType(1, UInt16)
                 IncrementPC()
             Case OpCodes.JUMP
                 Select Case Field3 'CC Field
@@ -161,12 +161,12 @@ Public Class Executor
                 Registers(15) = Registers(Field1)
             Case OpCodes.READIO
                 Select Case Registers(Field2)
-                    Case 0 To 2
-                        Registers(Field1) = 0
                     Case &H10
                         Registers(Field1) = PushBtn.GetBtn()
                     Case &H20
                         Registers(Field1) = LED.DataOut()
+                    Case &H50
+                        Registers(Field1) = TmrCnt.DataOut()
                     Case Else
                         Registers(Field1) = 0
                 End Select

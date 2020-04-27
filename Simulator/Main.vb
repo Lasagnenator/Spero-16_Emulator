@@ -46,6 +46,8 @@
     Private Sub PeripheralBusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeripheralBusToolStripMenuItem.Click
         Graphics.Show()
         LED.Show()
+        PushBtn.Show()
+
     End Sub
 
     Private Sub OnButton_Click(sender As Object, e As EventArgs) Handles OnButton.Click
@@ -100,6 +102,7 @@
         ResumeButton.Enabled = False
         PauseButton.Enabled = False
         StepButton.Enabled = True
+        Memory.ListBox1.SelectedIndex = 0
     End Sub
 
     Private Sub ResumeButton_Click(sender As Object, e As EventArgs) Handles ResumeButton.Click
@@ -114,6 +117,7 @@
 
     Private Sub StepButton_Click(sender As Object, e As EventArgs) Handles StepButton.Click
         Executor.StepOnce()
+        Memory.ListBox1.SelectedIndex = Executor.Registers(15)
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick 'Triggers every 0.5s +-14ms
@@ -145,6 +149,11 @@
         Executor.State = States.Idle
         Executor.Code = {0}
         Executor.Reset()
+
+        If ThreadMade Then
+            Work.Abort()
+        End If
+
         Memory.Value = {0}
         Memory.ListBox1.Items.Clear()
         Memory.ListBox2.Items.Clear()
@@ -159,13 +168,13 @@
         LED.Dispose()
         PushBtn.Dispose()
         Graphics.Dispose()
-        Work.Abort()
+        MyBase.Dispose()
 
         Return
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CycleTimer.Start()
-
+        TmrCnt.Load()
     End Sub
 End Class

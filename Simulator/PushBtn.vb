@@ -1,6 +1,6 @@
 ﻿Public Class PushBtn
-    Public Value As UInt16 = 0
-    Public Btns As CheckBox() = {CheckBox1, CheckBox2, CheckBox3, CheckBox4, CheckBox5, CheckBox6, CheckBox7, CheckBox8}
+    Public Shared Value As UInt16 = 0
+    Public Btns As CheckBox()
 
     Public Function GetBtn() As UInt16
         Return Value
@@ -16,5 +16,9 @@
             flag <<= 1 'Left shift for next bit
         Next
         Value = temp
+    End Sub
+
+    Private Sub PushBtn_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Btns = {CheckBox1, CheckBox2, CheckBox3, CheckBox4, CheckBox5, CheckBox6, CheckBox7, CheckBox8}
     End Sub
 End Class

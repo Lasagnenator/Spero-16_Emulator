@@ -2,12 +2,14 @@ import wx
 import Frames
 import assembler
 import sys
+import os
 
 class MainFrameClass(Frames.MainFrame):
     def __init__(self, parent):
         Frames.MainFrame.__init__(self, parent)
 
     def CreateASM(self, event):
+        os.system("cls")
         self.statusbar.SetStatusText("Started")
         file_path = self.OpenFilePicker.GetPath()
         try:
