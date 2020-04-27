@@ -165,7 +165,7 @@ Public Class Executor
                         Registers(Field1) = PushBtn.GetBtn()
                     Case &H20
                         Registers(Field1) = LED.DataOut()
-                    Case &H50
+                    Case &H30
                         Registers(Field1) = TmrCnt.DataOut()
                     Case Else
                         Registers(Field1) = 0
