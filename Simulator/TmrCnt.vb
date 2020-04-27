@@ -7,7 +7,7 @@
 
     Public Shared Sub Load()
         Timer1 = New Timer()
-        Timer1.Interval = 100
+        Timer1.Interval = 50
         Timer1.Enabled = True
     End Sub
 
