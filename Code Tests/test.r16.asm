@@ -1,3 +1,6 @@
+add r1,r2,r3
+
+
 ; The `-->` is not needed for comments. I am using it to show translation
 load    R1,#5     ;--> 0100 0005
 load    Rc,3efc   ;--> 1C00 3efc

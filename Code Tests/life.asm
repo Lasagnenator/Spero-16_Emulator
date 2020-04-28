@@ -22,6 +22,7 @@
 ;        1: Preset "R-pentomino"
 ;        2: Preset "Diehard"
 ;        3: Preset "Acorn"
+;        4: Preset "Straight line, 10 cells"
 ;        7: Run the 128x128 cell grid, press again to stop
 ;    LED 7: When lit, game is running
 ;
@@ -60,6 +61,9 @@
                                     ;
     load    r2,#0008                ; button #3 "Acorn" preset
     jumpeq  r1,r2,.PresetAcorn      ; pressed?
+                                    ;
+    load    r2,#0010                ; button #4 "Straight line" preset
+    jumpeq  r1,r2,.PresetLine       ; pressed?
                                     ;
     load    r2,#0080                ; button #7 "Run/Stop"
     jumpeq  r1,r2,.RunGameOfLife    ; pressed?
@@ -114,6 +118,10 @@
 
 .PresetAcorn
     load    rb,#.AcornCells         ; The "acorn".
+    jump    .DrawPreset             ;
+
+.PresetLine
+    load    rb,#.LineCells          ; The "straight line".
     jump    .DrawPreset             ;
 
     ; -----------------------------------------
@@ -539,6 +547,26 @@
     dw      1                       ;
     dw      0                       ;
     dw      0                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
+
+    ; -----------------------------------------
+    ; "Straight Line, 10 Cells"
+    ; 10x1 grid, in the center of the bitmap display:
+    ;   oooooooooo
+    ;
+.LineCells
+    dw      203B                    ; centering offset with current array
+    dw      1                       ; number of rows
+    dw      A                       ; number of columns, for all rows
+    dw      1                       ; row 1
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
     dw      1                       ;
     dw      1                       ;
     dw      1                       ;

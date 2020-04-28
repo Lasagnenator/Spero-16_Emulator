@@ -87,12 +87,12 @@ Public Class Executor
             Case OpCodes.ADD
                 Dim temp = Registers(Field1)
                 Registers(Field1) = Registers(Field1) + Registers(Field2) + (Registers(Field3) And CType(1, UInt16))
-                Registers(Field3) = If(Registers(Field1) > temp, 0, 1)
+                Registers(Field3) = If(Registers(Field1) >= temp, 0, 1)
                 IncrementPC()
             Case OpCodes.SUBTRACT
                 Dim temp = Registers(Field1)
                 Registers(Field1) = Registers(Field1) - Registers(Field2) - (Registers(Field3) And CType(1, UInt16))
-                Registers(Field3) = If(Registers(Field1) > temp, 1, 0)
+                Registers(Field3) = If(Registers(Field1) >= temp, 1, 0)
                 IncrementPC()
             Case OpCodes.BITAND
                 Registers(Field1) = Registers(Field2) And Registers(Field3)
