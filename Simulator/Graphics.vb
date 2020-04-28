@@ -50,6 +50,9 @@ Public Class Graphics
 
     Private Sub Graphics_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Enabled = True
+        Dim a As Drawing.Graphics = GraphicsDisplay.CreateGraphics()
+        a.InterpolationMode = Drawing2D.InterpolationMode.Low
+        a.Dispose()
     End Sub
 
     Public Structure BufferItem

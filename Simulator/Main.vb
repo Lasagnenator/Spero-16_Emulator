@@ -14,7 +14,9 @@
         OpenFileDialog1.ShowDialog()
         Dim path As String = OpenFileDialog1.FileName
         SelectedFile.Text = path
-
+        If Not FileIO.FileSystem.FileExists(path) Then
+            Exit Sub
+        End If
         Code = FileIO.FileSystem.ReadAllText(path)
         Try
             Executor.Code = Parser.Parse(Code)
@@ -33,21 +35,6 @@
 
     Private Sub Quit(sender As Object, e As EventArgs) Handles QuitToolStripMenuItem.Click
         Close()
-    End Sub
-
-    Private Sub RegistersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegistersToolStripMenuItem.Click
-        Registers.Show()
-    End Sub
-
-    Private Sub MemoryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MemoryToolStripMenuItem.Click
-        Memory.Show()
-    End Sub
-
-    Private Sub PeripheralBusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeripheralBusToolStripMenuItem.Click
-        Graphics.Show()
-        LED.Show()
-        PushBtn.Show()
-
     End Sub
 
     Private Sub OnButton_Click(sender As Object, e As EventArgs) Handles OnButton.Click
@@ -176,5 +163,10 @@
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CycleTimer.Start()
         TmrCnt.Load()
+        Registers.Show()
+        Memory.Show()
+        Graphics.Show()
+        LED.Show()
+        PushBtn.Show()
     End Sub
 End Class
