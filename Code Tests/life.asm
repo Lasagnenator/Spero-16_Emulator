@@ -19,9 +19,11 @@
 ; while an alive cell has a non-zero value (usually 1).
 ;
 ; Button 0: Randomize the 128x128 cell grid
-;        1: Preset pattern, "Acorn"
-;        2: Run the 128x128 cell grid, press again to stop
-;    LED 0: When lit, game is running
+;        1: Preset "R-pentomino"
+;        2: Preset "Diehard"
+;        3: Preset "Acorn"
+;        7: Run the 128x128 cell grid, press again to stop
+;    LED 7: When lit, game is running
 ;
 ; Internally, the buttons are "momentary push" but are implemented
 ; using checkboxes. The checkboxes are ticked to act as being "pressed"
@@ -48,25 +50,30 @@
     readio  r1,r2                   ; R1 = bitmap of pushbuttons
                                     ;
     load    r2,#0001                ; button #0 "Randomize Cells"
-    jumpeq  r1,r2,.PopulateCells    ; pressed?
+    jumpeq  r1,r2,.RandomPopulate   ; pressed?
                                     ;
-    load    r2,#0002                ; button #1 "Preset Acorn Pattern"
-    jumpeq  r1,r2,.AcornPattern     ; pressed?
+    load    r2,#0002                ; button #1 "R-pentomino" preset
+    jumpeq  r1,r2,.PresetRpentomino ; pressed?
                                     ;
-    load    r2,#0004                ; button #2 "Run/Stop"
+    load    r2,#0004                ; button #2 "Diehard" preset
+    jumpeq  r1,r2,.PresetDiehard    ; pressed?
+                                    ;
+    load    r2,#0008                ; button #3 "Acorn" preset
+    jumpeq  r1,r2,.PresetAcorn      ; pressed?
+                                    ;
+    load    r2,#0080                ; button #7 "Run/Stop"
     jumpeq  r1,r2,.RunGameOfLife    ; pressed?
                                     ;
     jump    .Mainloop               ; do it forever
 
     ; -----------------------------------------
-    ; Generate a population of cells.
-    ; Currently random in-lieu of an editor.
+    ; Generate a random population of cells.
     ;
-.PopulateCells
-    load    re,#.populateDo         ;
+.RandomPopulate
+    load    re,#.doRandom           ;
     jump    .WaitButtonsRelease     ;
                                     ;
-.populateDo
+.doRandom
     load    r4,#.CellArrays         ; address of current array in .CellArrays
     load    r7,#1                   ; constant 1
     load    r8,#4000                ; size of 128x128 array
@@ -74,65 +81,40 @@
     load    r5,#1F                  ;
     load    r6,#0                   ; probability of one in 32 cells is set alive
                                     ;
-.populateNextCell
+.randomNextCell
     load    re,#.randomizeCell      ;
     jump    .NextRandom             ; R2 = 16-bit random number
                                     ;
 .randomizeCell
     or      r1,r0,r0                ; presume cell is set dead (0)
     and     r2,r2,r5                ;
-    jumpgt  r2,r6,.setCellState     ;
+    jumpgt  r2,r6,.randomCellState  ;
     or      r1,r7,r7                ; cell is to be set alive (1)
-.setCellState
+.randomCellState
     store   r1,*r4                  ;
                                     ;
     add     r4,r7,r0                ; next cell
     sub     r8,r7,r0                ;
-    jumpne  r8,r0,.populateNextCell ;
+    jumpne  r8,r0,.randomNextCell   ;
                                     ;
     store   r0,.CurrentOffset       ; offset of current array in .CellArrays
     load    re,#.Mainloop           ;
     jump    .RenderCurrentCells     ; finally, draw the result
 
     ; -----------------------------------------
-    ; Generate preset "acorn" population of cells.
-    ; 7x3 grid, in the center of the bitmap display:
-    ;   -o-----
-    ;   ---o---
-    ;   oo--ooo
+    ; Initialize the cells array with presets.
     ;
-.AcornPattern
-    load    re,#.acornDo            ;
-    jump    .WaitButtonsRelease     ;
-                                    ;
-.acornDo
-                                    ;
-    store   r0,.CurrentOffset       ; offset of current array in .CellArrays
-    load    re,#.Mainloop           ;
-    jump    .RenderCurrentCells     ; finally, draw the result
+.PresetRpentomino
+    load    rb,#.RpentominoCells    ; The "R-pentomino".
+    jump    .DrawPreset             ;
 
-.acornCells
-    dw      0                       ; row 1
-    dw      1                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      0                       ; row 2
-    dw      0                       ;
-    dw      0                       ;
-    dw      1                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      1                       ; row 3
-    dw      1                       ;
-    dw      0                       ;
-    dw      0                       ;
-    dw      1                       ;
-    dw      1                       ;
-    dw      1                       ;
+.PresetDiehard
+    load    rb,#.DieHardCells       ; The "diehard".
+    jump    .DrawPreset             ;
+
+.PresetAcorn
+    load    rb,#.AcornCells         ; The "acorn".
+    jump    .DrawPreset             ;
 
     ; -----------------------------------------
     ; Run the "Game of Life".
@@ -152,24 +134,24 @@
                                     ;
 .runMainloop
     load    re,#.returnFromMNC      ; inner mainloop
-    jump    .MakeNextCells          ; Create the next array of cells from current array.
+    jump    .MakeNextCells          ; create the next array of cells from current array
 .returnFromMNC
                                     ;
     load    re,#.returnFromSCB      ;
-    jump    .SwapCellBuffers        ; Next (newly generated) becomes current.
+    jump    .SwapCellBuffers        ; next (newly generated) becomes current
 .returnFromSCB
                                     ;
     load    re,#.returnFromRCC      ;
-    jump    .RenderCurrentCells     ; Display the newly current grid of cells.
+    jump    .RenderCurrentCells     ; display the newly current grid of cells
 .returnFromRCC
                                     ;
     load    re,#.returnFromSTT      ;
-    jump    .SynchronizeToTick      ;
+    jump    .SynchronizeToTick      ; aiming for 20 Hz refresh rate
 .returnFromSTT
                                     ;
     load    r3,#0010                ; I/O address of push buttons
     readio  r1,r3                   ; R1 = bitmap of pushbuttons
-    load    r2,#0004                ; button #2 "Run/Stop"
+    load    r2,#0080                ; button #7 "Run/Stop"
     jumpne  r1,r2,.runMainloop      ; keep playing if not pressed
                                     ;
     load    re,#.runStop            ;
@@ -388,7 +370,7 @@
     ;
 .TurnOnRunLED
     load    r2,#0020                ; I/O address of LEDs
-    load    r1,#0004                ; only turn LED #2 on
+    load    r1,#0080                ; only turn LED #7 on
     writeio r1,r2                   ;
     jump    re                      ; return
 
@@ -408,12 +390,158 @@
     ; Uses  R1, R2, R3
     ;
 .SynchronizeToTick
-    load    r3,#0030                ; I/O address of 100 ms tick count
+    load    r3,#0030                ; I/O address of 50 ms tick count
     readio  r1,r3                   ; current value
 .syncTick
     readio  r2,r3                   ; new value
     jumpeq  r1,r2,.syncTick         ; only care about when it changes
     jump    re                      ; return
+
+    ; -----------------------------------------
+    ; Generate a preset population of cells.
+    ; Centered in bitmap display.
+    ; Entry RC = address of preset data
+    ;
+.DrawPreset
+    load    re,#.presetDo           ;
+    jump    .WaitButtonsRelease     ;
+                                    ;
+.presetDo
+    load    r1,#1                   ; constant 1
+                                    ;
+    load    r2,#.CellArrays         ;
+    load    r3,#4000                ; size of 128x128 array
+.clearForPreset
+    store   r0,*r2                  ;
+    add     r2,r1,r0                ;
+    sub     r3,r1,r0                ;
+    jumpne  r3,r0,.clearForPreset   ;
+                                    ;
+    load    r2,#.CellArrays         ;
+                                    ;
+    load    r3,*rb                  ; get centering offset
+    add     r2,r3,r0                ; cells array pointer
+    add     rb,r1,r0                ;
+                                    ;
+    load    r3,*rb                  ; get number of rows
+    add     rb,r1,r0                ;
+                                    ;
+    load    r4,*rb                  ; get number of columns
+    add     rb,r1,r0                ;
+                                    ;
+.nextPresetRow
+    or      r6,r2,r2                ; working copy of cells array pointer
+    or      r5,r4,r4                ; working copy of number of columns
+                                    ;
+.nextPresetCol
+    load    r7,*rb                  ;
+    store   r7,*r6                  ;
+                                    ;
+    add     rb,r1,r0                ; next preset cell
+    add     r6,r1,r0                ; next current array cell
+                                    ;
+    sub     r5,r1,r0                ;
+    jumpne  r5,r0,.nextPresetCol    ;
+                                    ;
+    load    r5,#80                  ; next row
+    add     r2,r5,r0                ;
+                                    ;
+    sub     r3,r1,r0                ; another preset cell has been done
+    jumpne  r3,r0,.nextPresetRow    ;
+                                    ;
+    store   r0,.CurrentOffset       ; offset of current array in .CellArrays
+    load    re,#.Mainloop           ;
+    jump    .RenderCurrentCells     ; finally, draw the result
+
+    ; -----------------------------------------
+    ; "R-pentomino"
+    ; 3x3 grid, in the center of the bitmap display:
+    ;   -oo
+    ;   oo-
+    ;   -o-
+    ;
+.RpentominoCells
+    dw      1FBF                    ; centering offset with current array
+    dw      3                       ; number of rows
+    dw      3                       ; number of columns, for all rows
+    dw      0                       ; row 1
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ; row 2
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ; row 3
+    dw      1                       ;
+    dw      0                       ;
+
+    ; -----------------------------------------
+    ; "Diehard"
+    ; 8x3 grid, in the center of the bitmap display:
+    ;   ------o-
+    ;   oo------
+    ;   -o---ooo
+    ;
+.DiehardCells
+    dw      1FBC                    ; centering offset with current array
+    dw      3                       ; number of rows
+    dw      8                       ; number of columns, for all rows
+    dw      0                       ; row 1
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      1                       ;
+    dw      0                       ;
+    dw      1                       ; row 2
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ; row 3
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
+
+    ; -----------------------------------------
+    ; "Acorn"
+    ; 7x3 grid, in the center of the bitmap display:
+    ;   -o-----
+    ;   ---o---
+    ;   oo--ooo
+    ;
+.AcornCells
+    dw      1FBD                    ; centering offset with current array
+    dw      3                       ; number of rows
+    dw      7                       ; number of columns, for all rows
+    dw      0                       ; row 1
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ; row 2
+    dw      0                       ;
+    dw      0                       ;
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      1                       ; row 3
+    dw      1                       ;
+    dw      0                       ;
+    dw      0                       ;
+    dw      1                       ;
+    dw      1                       ;
+    dw      1                       ;
 
     ; -----------------------------------------
     ; Variables

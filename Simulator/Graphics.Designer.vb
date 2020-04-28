@@ -30,7 +30,7 @@ Partial Class Graphics
         '
         'GraphicsDisplay
         '
-        Me.GraphicsDisplay.BackColor = System.Drawing.Color.White
+        Me.GraphicsDisplay.BackColor = System.Drawing.Color.Black
         Me.GraphicsDisplay.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GraphicsDisplay.Location = New System.Drawing.Point(0, 0)
         Me.GraphicsDisplay.Margin = New System.Windows.Forms.Padding(0)
