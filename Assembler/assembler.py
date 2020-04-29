@@ -228,6 +228,7 @@ class Line:
             self.num = int(split[1][0][:4], 16)
             self.bin_instruction = "0000" * self.num
             self.noop = False
+            self.is_ds = True
 
         elif split[0] == "DW":
             if split[1][0][0] == ".": #is a label, process later
@@ -332,6 +333,6 @@ def make_asm(file_path):
     for item in label_table:
         print("{}\t:\t{}".format(item, hex(label_table[item])[2:]))
 
-    print("Total words: {}".format(counter))
+    print("Total words: {}".format(hex(counter)[2:]))
 
     return asm.upper()
