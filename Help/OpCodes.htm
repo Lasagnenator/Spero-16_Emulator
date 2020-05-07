@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>OpCodes</Title>
+</HEAD>
+<BODY>
+<table style="border-color: black; background-color: white; margin-left: auto; margin-right: auto;" border="1" cellpadding="1">
+<tbody>
+<tr>
+<td>
+<p><strong>OpCode</strong></p>
+<p><strong>4 bits</strong></p>
+</td>
+<td>
+<p><strong>Rn</strong></p>
+<p><strong>4bits</strong></p>
+</td>
+<td>
+<p><strong>Rm</strong></p>
+<p><strong>4 bits</strong></p>
+</td>
+<td>
+<p><strong>Rc</strong></p>
+<p><strong>4 bits</strong></p>
+</td>
+<td>
+<p><strong>D</strong></p>
+<p><strong>16 bits</strong></p>
+</td>
+<td><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td>0 LOAD</td>
+<td>Rn</td>
+<td>0</td>
+<td>0</td>
+<td>#imm</td>
+<td><span style="font-weight: 400;">This sets register Rn with the immediate value.</span></td>
+</tr>
+<tr>
+<td>1 LOAD</td>
+<td>Rn</td>
+<td>0</td>
+<td>0</td>
+<td>addr</td>
+<td><span style="font-weight: 400;">This copies the value at RAM address into register Rn.</span></td>
+</tr>
+<tr>
+<td>2 LOAD</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>0</td>
+<td>-</td>
+<td><span style="font-weight: 400;">This copies the value at RAM addressed (pointed to) by register Rm into register Rn.</span></td>
+</tr>
+<tr>
+<td>3 STORE</td>
+<td>Rn</td>
+<td>0</td>
+<td>0</td>
+<td>addr</td>
+<td><span style="font-weight: 400;">This writes the value in register Rn to RAM address.</span></td>
+</tr>
+<tr>
+<td>4 STORE</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>0</td>
+<td>-</td>
+<td><span style="font-weight: 400;">This writes the value in register Rn to RAM addressed (pointed to) by register Rm.</span></td>
+</tr>
+<tr>
+<td>5 ADD</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>Rc</td>
+<td>-</td>
+<td>
+<p><span style="font-weight: 400;">Rn = Rn + Rm + (Rc&amp;1&#8322;</span><span style="font-weight: 400;">)</span></p>
+<p><span style="font-weight: 400;">Add register Rn to register Rm and register Rc, storing the result in register Rn. (Register Rc is carry in and becomes carry out.)</span></p>
+</td>
+</tr>
+<tr>
+<td>6 SUB</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>Rc</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Rn = Rn - Rm - (Rc&amp;1&#8322;</span><span style="font-weight: 400;">)</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">Subtract register Rm and register Rc from register Rn, putting the result into register Rn. (Register Rc is borrow in and becomes borrow out.)</span></td>
+</tr>
+<tr>
+<td>7 AND</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>Rc</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Bitwise AND of value in register Rm and value in register Rc, stored into register Rn.</span></td>
+</tr>
+<tr>
+<td>8 OR</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>Rc</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Bitwise OR of value in register Rm and value in register Rc, stored into register Rn.</span></td>
+</tr>
+<tr>
+<td>9 XOR</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>Rc</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Bitwise XOR of value in register Rm and value in register Rc, stored into register Rn.</span></td>
+</tr>
+<tr>
+<td>A SHIFTR</td>
+<td>Rn</td>
+<td>0</td>
+<td>Rc</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Register Rn shifted right one bit and register Rc becomes the original bit 0 of Rn. The MSB is preserved. This operation is a truncating signed shift.</span></td>
+</tr>
+<tr>
+<td>B JUMP</td>
+<td>Rn</td>
+<td>Rm</td>
+<td>CC</td>
+<td>addr</td>
+<td>
+<p><span style="font-weight: 400;">Jump to program address based on a condition chosen by the value of field CC:</span></p>
+<p><span style="font-weight: 400;">0000&#8322;</span><span style="font-weight: 400;">&nbsp;JUMP&nbsp; &nbsp; &nbsp; jump always</span></p>
+<p><span style="font-weight: 400;">0001&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPLT&nbsp; jump if signed Rn&lt;Rm&nbsp;</span></p>
+<p><span style="font-weight: 400;">0010&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPGT jump if signed Rn&gt;Rm</span></p>
+<p><span style="font-weight: 400;">0011&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPEQ jump if Rn=Rm</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">01002</span><span style="font-weight: 400;">&nbsp;JUMPNV jump never</span></p>
+<p><span style="font-weight: 400;">0101&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPBL&nbsp; jump if unsigned Rn&lt;Rm</span></p>
+<p><span style="font-weight: 400;">0110&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPAB jump if unsigned Rn&gt;Rm</span></p>
+<p><span style="font-weight: 400;">0111&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPNE jump if Rn!=Rm</span></p>
+<span style="font-weight: 400;">1XXX&#8322;</span><span style="font-weight: 400;">&nbsp;Reserved.</span></td>
+</tr>
+<tr>
+<td>C JUMP</td>
+<td>Rn</td>
+<td>0</td>
+<td>0</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Sets program address to value in register Rn.</span></td>
+</tr>
+<tr>
+<td>D&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>E READIO</td>
+<td>Rn</td>
+<td>Rp</td>
+<td>0</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Loads value from peripheral number in register Rp into register Rn.</span></td>
+</tr>
+<tr>
+<td>F WRITEIO</td>
+<td>Rn</td>
+<td>Rp</td>
+<td>0</td>
+<td>-</td>
+<td><span style="font-weight: 400;">Sends value from register Rn to peripheral number in register Rp.</span></td>
+</tr>
+</tbody>
+</table>
+
+</BODY>
+</HTML>

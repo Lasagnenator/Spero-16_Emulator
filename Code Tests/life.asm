@@ -49,7 +49,7 @@
     ; -----------------------------------------
     ; Initial pseudo-RNG seed (at program load).
     ; The RNG is implemented using a polynominal counter.
-    ; Do not seed with &H000, as that is the error state.
+    ; Do not seed with &H0000, as that is the error state.
     ;
     ; If "random populate" is performed and it is wished to replay that
     ; specific game again then take note of the value in .SavedRandomSeed

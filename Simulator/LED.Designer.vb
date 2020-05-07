@@ -43,7 +43,7 @@ Partial Class LED
         Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox1.Enabled = False
         Me.CheckBox1.Location = New System.Drawing.Point(346, 21)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox1.TabIndex = 8
@@ -56,7 +56,7 @@ Partial Class LED
         Me.CheckBox2.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox2.Enabled = False
         Me.CheckBox2.Location = New System.Drawing.Point(300, 21)
-        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox2.TabIndex = 9
@@ -69,7 +69,7 @@ Partial Class LED
         Me.CheckBox3.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox3.Enabled = False
         Me.CheckBox3.Location = New System.Drawing.Point(254, 21)
-        Me.CheckBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox3.TabIndex = 10
@@ -82,7 +82,7 @@ Partial Class LED
         Me.CheckBox4.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox4.Enabled = False
         Me.CheckBox4.Location = New System.Drawing.Point(208, 21)
-        Me.CheckBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox4.TabIndex = 11
@@ -95,7 +95,7 @@ Partial Class LED
         Me.CheckBox5.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox5.Enabled = False
         Me.CheckBox5.Location = New System.Drawing.Point(162, 21)
-        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox5.Name = "CheckBox5"
         Me.CheckBox5.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox5.TabIndex = 12
@@ -108,7 +108,7 @@ Partial Class LED
         Me.CheckBox6.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox6.Enabled = False
         Me.CheckBox6.Location = New System.Drawing.Point(116, 21)
-        Me.CheckBox6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox6.Name = "CheckBox6"
         Me.CheckBox6.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox6.TabIndex = 13
@@ -121,7 +121,7 @@ Partial Class LED
         Me.CheckBox7.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox7.Enabled = False
         Me.CheckBox7.Location = New System.Drawing.Point(70, 21)
-        Me.CheckBox7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox7.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox7.Name = "CheckBox7"
         Me.CheckBox7.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox7.TabIndex = 14
@@ -134,7 +134,7 @@ Partial Class LED
         Me.CheckBox8.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox8.Enabled = False
         Me.CheckBox8.Location = New System.Drawing.Point(22, 21)
-        Me.CheckBox8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox8.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox8.Name = "CheckBox8"
         Me.CheckBox8.Size = New System.Drawing.Size(28, 56)
         Me.CheckBox8.TabIndex = 15
@@ -146,6 +146,7 @@ Partial Class LED
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(464, 102)
+        Me.ControlBox = False
         Me.Controls.Add(Me.CheckBox8)
         Me.Controls.Add(Me.CheckBox7)
         Me.Controls.Add(Me.CheckBox6)
@@ -154,7 +155,7 @@ Partial Class LED
         Me.Controls.Add(Me.CheckBox3)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "LED"
         Me.Text = "LED Panel"
         Me.ResumeLayout(False)

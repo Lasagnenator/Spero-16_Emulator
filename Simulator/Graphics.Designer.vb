@@ -49,6 +49,7 @@ Partial Class Graphics
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(426, 425)
+        Me.ControlBox = False
         Me.Controls.Add(Me.GraphicsDisplay)
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "Graphics"

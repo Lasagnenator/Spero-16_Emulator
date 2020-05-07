@@ -1,0 +1,15 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=..\Simulator\Help.chm
+Contents file=Table of Contents.hhc
+Default topic=Index.htm
+Display compile progress=Yes
+Language=0xc09 English (Australia)
+Title=Manual
+
+
+[FILES]
+Index.htm
+
+[INFOTYPES]
+

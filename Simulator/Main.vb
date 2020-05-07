@@ -169,4 +169,10 @@
         LED.Show()
         PushBtn.Show()
     End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        'Display the chm file.
+        'Dim navigator = HelpNavigator.TableOfContents
+        Help.ShowHelp(Me, "Help.chm", HelpNavigator.TableOfContents)
+    End Sub
 End Class
