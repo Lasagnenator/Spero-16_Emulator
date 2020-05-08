@@ -90,6 +90,9 @@
         PauseButton.Enabled = False
         StepButton.Enabled = True
         Memory.ListBox1.SelectedIndex = 0
+        Graphics.Reset()
+        LED.Reset()
+        PushBtn.Reset()
     End Sub
 
     Private Sub ResumeButton_Click(sender As Object, e As EventArgs) Handles ResumeButton.Click

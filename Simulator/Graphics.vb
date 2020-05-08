@@ -55,6 +55,10 @@ Public Class Graphics
         a.Dispose()
     End Sub
 
+    Public Sub Reset()
+        bit = New Bitmap(128, 128)
+    End Sub
+
     Public Structure BufferItem
         Public ReadOnly X As Byte
         Public ReadOnly Y As Byte

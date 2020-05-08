@@ -21,4 +21,11 @@
     Private Sub PushBtn_Load(sender As Object, e As EventArgs) Handles Me.Load
         Btns = {CheckBox1, CheckBox2, CheckBox3, CheckBox4, CheckBox5, CheckBox6, CheckBox7, CheckBox8}
     End Sub
+
+    Public Sub Reset()
+        Value = 0
+        For Each item In Btns
+            item.Checked = False
+        Next
+    End Sub
 End Class

@@ -29,4 +29,8 @@
         Timer1.Enabled = True
         LEDs = {CheckBox1, CheckBox2, CheckBox3, CheckBox4, CheckBox5, CheckBox6, CheckBox7, CheckBox8}
     End Sub
+
+    Public Sub Reset()
+        Value = 0
+    End Sub
 End Class
