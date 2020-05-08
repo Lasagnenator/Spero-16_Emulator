@@ -5,7 +5,7 @@
 <!-- Sitemap 1.0 -->
 </HEAD><BODY>
 <OBJECT type="text/site properties">
-	<param name="ImageType" value="Folder">
+	<param name="Window Styles" value="0x800025">
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
@@ -17,8 +17,16 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Assembler Usage">
+			<param name="Local" value="Assembler Usage.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Simulator Usage">
 			<param name="Local" value="SimulatorUsage.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Building">
+			<param name="Local" value="BuildInstructions.htm">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
@@ -26,8 +34,20 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Assembly Index">
+			<param name="Local" value="AssemblyReferenceLanding.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Op Codes">
 			<param name="Local" value="OpCodes.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Code File Format">
+			<param name="Local" value="CodeFileFormat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Peripheral Reference">
+			<param name="Local" value="PeripheralReference.htm">
 			</OBJECT>
 	</UL>
 </UL>

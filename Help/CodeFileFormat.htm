@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Code FIle Format</Title>
+</HEAD>
+<BODY>
+<p>===ASM FILE===<br />; The `--&gt;` is not needed for comments. It is being used to show translation<br />load R1,#5 ;--&gt; 0100 0005<br />load Rc,3efc ;--&gt; 1C00 3efc<br /><br />load R4 , *R5 ;--&gt; 2450<br /><br />sToRe R0,3eFc ;--&gt; 3000 3efc (Always writes zero as R0 is always zero)<br />.start<br />store R1,*R2 ;--&gt; 4120<br />add R7,R8,R9 ;--&gt; 5789<br />sub R7,R8,R9 ;--&gt; 6789<br />and R7,R8,R9 ;--&gt; 7789<br />or R7,R8,R9 ;--&gt; 8789<br />shiftr Ra,Rc ;--&gt; AA0C<br />readio Rb,R7 ;--&gt; EB70<br />writeio Rb,R7 ;--&gt; FB70<br /><br />jump .end ;--&gt; B000 0020 (forward reference)<br />jumplt R0,R4,3efc;--&gt; B041 3efc<br />jumpgt R1,R5,3efc;--&gt; B152 3efc<br />jumpeq R2,R6,3efc;--&gt; B263 3efc<br />jumpnv R2,R6,3efc;--&gt; B264 3efc (Basically a no-op)<br />jumpbl R3,R7,3efc;--&gt; B375 3efc<br />jumpab R4,R8,3efc;--&gt; B486 3efc<br />jumpne R5,R9,.start;--&gt; B597 0007<br />jump Rf ;--&gt; CF00 (This jumps to itself as Rf = program counter)<br /><br />.end<br />jump 3 ;--&gt; B000 0003 (This actually jumps to erroneous data)<br />jump .start ;--&gt; B000 0007 (backward reference)<br /><br />load R4,.end ;--&gt; 1400 0020<br />store R5,.end ;--&gt; 3500 0020<br />load R6,#.end ;--&gt; 0600 0020<br />;ds is DefineStorage<br />ds 3 ;--&gt; 0000 0000 0000<br />;dw is DefineWord<br />dw 456 ;--&gt; 0456<br />dw .end ;--&gt; 0020</p>
+<p><br />===BIN FILE===<br />010000051C003EFC245030003EFC412057896789778987899789AA0CEB70FB70B0000021B0413EFCB1523EFCB2633EFCB2643EFCB3753EFCB4863EFCB5970007CF00B0000003B000000714000021350000210600002100000000000004560021</p>
+<p>&nbsp;</p>
+<p>Let&rsquo;s look at the features of this file. Each line is either blank, starts with a mnemonic, semicolon, or period. The entire code file is case insensitive as seen on the fourth instruction. One line can contain a maximum of one instruction.</p>
+<p>A semicolon (`;`) represents a comment. This will instruct the assembler to ignore everything after it until a newline character is reached. Blank lines are likewise ignored. If a line starts with a period (`.`) it denotes a label for the next line. Labels are automatically converted into the correct address for jump statements. They can only be used in jump, load and store statements in place of the address. Labels and their references must not have whitespace in them or after them (on the same line). Labels can only be defined once but can be referenced as many times as needed.</p>
+<p>After an opcode is a space (can be multiple spaces). If the instruction requires a register, it will be denoted by R0 to Rf (with the `R`). If the register is a pointer, it will have an asterisk prefix (`*`) and then the `R`. In the LOAD statement at the start of the file (opcode zero), the immediate value is prefixed by a hashtag (`#`). Notice how the value gets padded to 16 bits automatically. Operands of instructions are separated by commas (all whitespace between operands is removed before processing further, hence instruction 3 is still valid).&nbsp;</p>
+<p>The order and number of operands is determined by what fields are changeable (not zero in the table). Only these fields are actually needed in the assembly file. The exception to this is the jump statement which has a separate mnemonic for each type of jump (refer to table for all types of jumps) and so does not need the CC field.</p>
+<p>Near the end of the sample is a DS operation. This is a DefineStorage keyword and is not actually used by the simulator. This allows the programmer to reserve a specific number of words. This sets the specified number of words to zero. This can be used for arrays and tables etc. The hex number is limited to 4 characters. Any more will be ignored.</p>
+<p>The DW operation means that the specific word is put into memory. The value here can be a label or an absolute address.</p>
+
+<p>See <a href="Assembler Usage.htm">Assembler Usage</a> for conversion of a code file into a binary file.</p>
+
+<p><a href="AssemblyReferenceLanding.htm">Back to index.</a></p>
+
+</BODY>
+</HTML>

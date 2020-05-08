@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Peripheral Reference</Title>
+</HEAD>
+<BODY>
+<table style="margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td>Address</td>
+<td>Device</td>
+<td>Infromation</td>
+</tr>
+<tr>
+<td>0000</td>
+<td>Graphics</td>
+<td>
+<p>Write the X coordinate of the pixel.</p>
+<p>The screen is 127x127 so only bits 0-6 will actually be used.</p>
+<p>Only writable.</p>
+</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>Graphics</td>
+<td>
+<p>Write the Y coordinate of the pixel.</p>
+<p>The screen is 127x127 so only bits 0-6 will actually be used.</p>
+<p>Only writable.</p>
+</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>Graphics</td>
+<td>
+<p>Write the colour value of the pixel</p>
+<p>RGB with bits 0-4 being red, 5-11 being green, 12-15 for blue.</p>
+<p>Only writable. When colour value is written, the screen gets updated with the new x,y,colour pixel.</p>
+</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>Push Buttons</td>
+<td>
+<p>Read the state of the 8 buttons.</p>
+<p>Bits 0-7 are the states of each of the buttons. 0 means unpressed and 1 means pressed.</p>
+<p>Only read from. Writing does nothing.</p>
+</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>LED Output</td>
+<td>
+<p>Controls the 8 LEDs.</p>
+<p>Bits 0-7 are the states of each of the LEDs. 0 means off and 1 means on.</p>
+<p>Only writable. Reading returns zero.</p>
+</td>
+</tr>
+<tr>
+<td>0030</td>
+<td>Timer</td>
+<td>
+<p>A timer that increments its read value by one every 50 milliseconds and wraps around to zero when it goes above 65535 ticks.</p>
+<p>Only readable. Writing does nothing.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>It should be noted that a peripheral is not limited to a single peripheral address and can take multiple as seen with the graphics peripheral. It is up to the designer of the peripheral as to how it should work across multiple addresses and it is up to the programmer to make sure that they use the peripheral correctly.</p>
+
+<p><a href="AssemblyReferenceLanding.htm">Back to index.</a></p>
+
+</BODY>
+</HTML>

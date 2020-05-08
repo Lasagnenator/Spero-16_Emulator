@@ -10,6 +10,14 @@ Title=Manual
 
 [FILES]
 Index.htm
+Assembler Usage.htm
+SimulatorUsage.htm
+OpCodes.htm
+AssemblyReference.htm
+AssemblyReferenceLanding.htm
+CodeFileFormat.htm
+PeripheralReference.htm
+BuildInstructions.htm
 
 [INFOTYPES]
 
