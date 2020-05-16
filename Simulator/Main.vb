@@ -174,8 +174,10 @@
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-        'Display the chm file.
-        'Dim navigator = HelpNavigator.TableOfContents
+        If Not FileIO.FileSystem.FileExists("Help.chm") Then
+            MessageBox.Show("Help.chm not found!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
         Help.ShowHelp(Me, "Help.chm", HelpNavigator.TableOfContents)
     End Sub
 End Class

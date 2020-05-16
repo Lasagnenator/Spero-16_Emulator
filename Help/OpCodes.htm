@@ -76,10 +76,7 @@
 <td>Rm</td>
 <td>Rc</td>
 <td>-</td>
-<td>
-<p><span style="font-weight: 400;">Rn = Rn + Rm + (Rc&amp;1&#8322;</span><span style="font-weight: 400;">)</span></p>
-<p><span style="font-weight: 400;">Add register Rn to register Rm and register Rc, storing the result in register Rn. (Register Rc is carry in and becomes carry out.)</span></p>
-</td>
+<td><span style="font-weight: 400;">Rn = Rn + Rm + (Rc&amp;1&#8322;</span><span style="font-weight: 400;">)</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">Add register Rn to register Rm and register Rc, storing the result in register Rn. (Register Rc is carry in and becomes carry out.)</span></td>
 </tr>
 <tr>
 <td>6 SUB</td>
@@ -127,16 +124,7 @@
 <td>Rm</td>
 <td>CC</td>
 <td>addr</td>
-<td>
-<p><span style="font-weight: 400;">Jump to program address based on a condition chosen by the value of field CC:</span></p>
-<p><span style="font-weight: 400;">0000&#8322;</span><span style="font-weight: 400;">&nbsp;JUMP&nbsp; &nbsp; &nbsp; jump always</span></p>
-<p><span style="font-weight: 400;">0001&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPLT&nbsp; jump if signed Rn&lt;Rm&nbsp;</span></p>
-<p><span style="font-weight: 400;">0010&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPGT jump if signed Rn&gt;Rm</span></p>
-<p><span style="font-weight: 400;">0011&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPEQ jump if Rn=Rm</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">01002</span><span style="font-weight: 400;">&nbsp;JUMPNV jump never</span></p>
-<p><span style="font-weight: 400;">0101&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPBL&nbsp; jump if unsigned Rn&lt;Rm</span></p>
-<p><span style="font-weight: 400;">0110&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPAB jump if unsigned Rn&gt;Rm</span></p>
-<p><span style="font-weight: 400;">0111&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPNE jump if Rn!=Rm</span></p>
-<span style="font-weight: 400;">1XXX&#8322;</span><span style="font-weight: 400;">&nbsp;Reserved.</span></td>
+<td><span style="font-weight: 400;">Jump to program address based on a condition chosen by the value of field CC:<br /><br /></span> <span style="font-weight: 400;">0000&#8322;</span><span style="font-weight: 400;">&nbsp;JUMP&nbsp; &nbsp; &nbsp; jump always<br /></span><span style="font-weight: 400;">0001&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPLT&nbsp; jump if signed Rn&lt;Rm&nbsp;<br /></span><span style="font-weight: 400;">0010&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPGT jump if signed Rn&gt;Rm<br /></span><span style="font-weight: 400;">0011&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPEQ jump if Rn=Rm</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">0100&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPNV jump never<br /></span><span style="font-weight: 400;">0101&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPBL&nbsp; jump if unsigned Rn&lt;Rm<br /></span><span style="font-weight: 400;">0110&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPAB jump if unsigned Rn&gt;Rm<br /></span><span style="font-weight: 400;">0111&#8322;</span><span style="font-weight: 400;">&nbsp;JUMPNE jump if Rn!=Rm<br /></span>1XXX&#8322;&nbsp;Reserved.</td>
 </tr>
 <tr>
 <td>C JUMP</td>
@@ -172,8 +160,6 @@
 </tr>
 </tbody>
 </table>
-
 <p><a href="AssemblyReferenceLanding.htm">Back to index.</a></p>
-
 </BODY>
 </HTML>
