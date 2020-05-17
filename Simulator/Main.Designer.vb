@@ -27,6 +27,7 @@ Partial Class Main
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.CurrentStatus = New System.Windows.Forms.ToolStripStatusLabel()
@@ -45,7 +46,6 @@ Partial Class Main
         Me.ResumeButton = New System.Windows.Forms.Button()
         Me.StepButton = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -67,7 +67,7 @@ Partial Class Main
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.QuitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(72, 40)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(72, 36)
         Me.FileToolStripMenuItem.Text = "File"
         Me.FileToolStripMenuItem.ToolTipText = "Open a file." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Quit the application."
         '
@@ -84,6 +84,14 @@ Partial Class Main
         Me.QuitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
         Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(294, 44)
         Me.QuitToolStripMenuItem.Text = "Quit"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(85, 36)
+        Me.ToolStripMenuItem1.Text = "Help"
+        Me.ToolStripMenuItem1.ToolTipText = "Get embedded help."
         '
         'StatusStrip1
         '
@@ -240,14 +248,6 @@ Partial Class Main
         Me.ToolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.ToolTip1.ToolTipTitle = "Help"
         '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(85, 44)
-        Me.ToolStripMenuItem1.Text = "Help"
-        Me.ToolStripMenuItem1.ToolTipText = "Get embedded help."
-        '
         'HelpProvider1
         '
         Me.HelpProvider1.HelpNamespace = "C:\Users\Matthew\Desktop\school\Y12\SDD\Major project\Simulator\Simulator\Help.ch" &
@@ -272,7 +272,7 @@ Partial Class Main
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Main"
-        Me.Text = "RISC 16 Simulator"
+        Me.Text = "Spero-16 Simulator"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)

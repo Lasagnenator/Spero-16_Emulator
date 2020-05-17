@@ -79,6 +79,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Definitions.vb" />
     <Compile Include="Executor.vb" />
     <Compile Include="LED.Designer.vb">
