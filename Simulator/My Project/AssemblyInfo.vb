@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Simulator")>
+<Assembly: AssemblyTitle("Spero-16")>
 <Assembly: AssemblyDescription("A RISC ISA CPU simulator")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Simulator")>
+<Assembly: AssemblyProduct("Spero-16 Simulator")>
 <Assembly: AssemblyCopyright("Copyright Matthew Richards ©  2020")>
 <Assembly: AssemblyTrademark("")>
 

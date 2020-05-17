@@ -8,7 +8,7 @@ xcopy /y ".\Assembler\dist\Assembler.zip" ".\dist\"
 
 echo Copying Simulator release
 "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" Simulator.sln /Build Release
-xcopy /y ".\Simulator\bin\Release\Simulator.exe" ".\dist\"
+xcopy /y ".\Simulator\bin\Release\Spero.exe" ".\dist\"
 xcopy /y ".\Simulator\bin\Release\Help.chm" ".\dist\"
 
 echo Copying Code tests
