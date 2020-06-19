@@ -6,7 +6,7 @@
 import sys #error displaying
 failure = False #if at least one error present
 
-#table of label, addr, references
+#table of label, addr
 label_table = dict()
 #E.g. {".label" : 3f}
 
@@ -16,7 +16,7 @@ class Line:
     lineno = -1 #line number in the input file
     pc = -1 #memory address of the start of this instruction
     noop = True #set to false if valid operation
-    addr = "" #"" means unset. Any positive value is valid (0<=x<=65535)
+    addr = "" #"" means unset. Any positive value is valid (0<=addr<=65535)
     has_data = False #whether there is a 16 bit data on the end
 
     is_label = False
@@ -29,7 +29,6 @@ class Line:
     def __init__(self, string, lineno):
         self.string = string
         self.lineno = lineno
-        #self.pc = pc
         self.Parse()
 
     def Parse(self):

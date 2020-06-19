@@ -58,12 +58,12 @@
                                     ;
     or      R4,R1,R0                ; 002C R4 <- R1
     add     R4,R3,R0                ; 002D R4 <- Source + Length
-    jumplt  R4,R2,.NotOverlap       ; 002E R4 < R2, Source is fully before destination
+    jumpbl  R4,R2,.NotOverlap       ; 002E R4 < R2, Source is fully before destination
     jumpeq  R4,R2,.NotOverlap       ; 0030 R4 = R2, Source is fully before destination
                                     ;
     or      R5,R2,R0                ; 0032 R5 <- R2
     add     R5,R3,R0                ; 0033 R5 <- Destination + Length
-    jumpgt  R4,R5,.NotOverlap       ; 0034 R4 > R5, Source is fully after destination
+    jumpab  R4,R5,.NotOverlap       ; 0034 R4 > R5, Source is fully after destination
     jumpeq  R4,R5,.NotOverlap       ; 0036 R4 = R5, Source is fully after destination
                                     ;
 .IsOverlap

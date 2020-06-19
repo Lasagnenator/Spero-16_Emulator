@@ -13,16 +13,17 @@ add     Rn,Rm,Rc  ;--> 5nmc
 sub     Rn,Rm,Rc  ;--> 6nmc
 and     Rn,Rm,Rc  ;--> 7nmc
 or      Rn,Rm,Rc  ;--> 8nmc
-shiftr  Rn,Rc     ;--> 9n0c
+xor     Rn,Rm,Rc  ;--> 9n0c
+shiftr  Rn,Rc     ;--> An0c
 readio  Rn,Rm     ;--> Enm0
 writeio Rn,Rm     ;--> Fnm0
 
-jump    addr      ;--> A000 addr
-jumplt  Rn,Rm,addr;--> Anm1 addr
-jumpgt  Rn,Rm,addr;--> Anm2 addr
-jumpeq  Rn,Rm,addr;--> Anm3 addr
-jumpnv            ;--> Anm4
-jumpbl  Rn,Rm,addr;--> Anm5 addr
-jumpab  Rn,Rm,addr;--> Anm6 addr
-jumpne  Rn,Rm,addr;--> Anm7 addr
-jump    *Rn       ;--> Bn00
+jump    addr      ;--> B000 addr
+jumplt  Rn,Rm,addr;--> Bnm1 addr
+jumpgt  Rn,Rm,addr;--> Bnm2 addr
+jumpeq  Rn,Rm,addr;--> Bnm3 addr
+jumpnv            ;--> Bnm4
+jumpbl  Rn,Rm,addr;--> Bnm5 addr
+jumpab  Rn,Rm,addr;--> Bnm6 addr
+jumpne  Rn,Rm,addr;--> Bnm7 addr
+jump    *Rn       ;--> Cn00

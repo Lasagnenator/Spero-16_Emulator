@@ -13,5 +13,13 @@ xcopy /y ".\Simulator\bin\Release\Help.chm" ".\dist\"
 
 echo Copying Code tests
 7z a .\dist\CodeTests.zip ".\Code Tests"
+
+cd .\dist\
+echo Creating checksum file.
+wsl sha256sum Assembler.zip > sha256sum.txt
+wsl sha256sum CodeTests.zip >> sha256sum.txt
+wsl sha256sum Help.chm >> sha256sum.txt
+wsl sha256sum Spero.chm >> sha256sum.txt
+echo Checksum file created.
 pause
 

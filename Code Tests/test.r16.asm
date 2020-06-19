@@ -1,6 +1,3 @@
-add r1,r2,r3
-
-
 ; The `-->` is not needed for comments. I am using it to show translation
 load    R1,#5     ;--> 0100 0005
 load    Rc,3efc   ;--> 1C00 3efc
@@ -35,9 +32,9 @@ jump    .start    ;--> B000 0007 (backward reference)
 
 load    R4,.end   ;--> 1400 0020
 store   R5,.end   ;--> 3500 0020
-load    r6,#.end  ;--> 0600 0020
-
+load    R6,#.end  ;--> 0600 0020
 ;ds is DefineStorage
 ds      3         ;--> 0000 0000 0000
+;dw is DefineWord
 dw      456       ;--> 0456
 dw      .end      ;--> 0020
