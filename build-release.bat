@@ -19,7 +19,7 @@ echo Creating checksum file.
 wsl sha256sum Assembler.zip > sha256sum.txt
 wsl sha256sum CodeTests.zip >> sha256sum.txt
 wsl sha256sum Help.chm >> sha256sum.txt
-wsl sha256sum Spero.chm >> sha256sum.txt
+wsl sha256sum Spero.exe >> sha256sum.txt
 echo Checksum file created.
 pause
 
